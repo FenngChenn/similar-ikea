@@ -21,15 +21,17 @@ export default {
   display: flex;
 }
 .left {
-  width: 120px;
+  width: 8rem;
+  /* padding-top: 1rem; */
   /* background-color: #666; */
 }
 .center {
   flex: 1;
-  background-color: #ff8198;
+  /* background-color: #ff8198; */
 }
 .right {
-  width: 100px;
-  background-color: lightgreen;
+  width: 6rem;
+  /* background-color: lightgreen; */
+  /* padding-top: 1rem; */
 }
 </style>
