@@ -6,16 +6,35 @@
     </div>
     <div slot="center">
       <div class="detail-nav">
-        <div v-for="(item, index) in navContent" :key="index">{{item}}</div>
+        <!-- <div class="nav-item" v-for="(item, index) in navContent" :key="index">
+          {{item}}
+        </div> -->
         <!-- <el-menu class="el-menu-demo" mode="horizontal" :default-active="activeIndex" @select="handleSelect">
           <el-menu-item v-for="(item, index) in navContent" :key="index" :index="(index+1).toString()">
             {{item}}
           </el-menu-item>
         </el-menu> -->
+        <el-row :class="colSpace">
+          <el-col :span="span" v-for="(item, index) in navContent" :key="index">
+            <el-dropdown trigger="click">
+              <span class="el-dropdown-link">
+                {{item.title}}<i v-show="item.isIcon" class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <!-- v-if="item.drop.length === 0" -->
+              <el-dropdown-menu>
+                <el-dropdown-item v-for="(sonItem, sonIndex) in item.drop" :key="sonIndex">
+                  {{sonItem}}
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </el-col>
+        </el-row>
       </div>
     </div>
-    <div slot="right">
+    <div slot="right" class="icon-area">
       <img src="@/assets/img/user.svg" alt="">
+      <img src="@/assets/img/wish.svg" alt="">
+      <img src="@/assets/img/shopbag.svg" alt="">
     </div>
   </nav-bar>
 </template>
@@ -30,8 +49,50 @@ export default {
   },
   data() {
     return {
-      navContent: ['精选活动', '所有房间', '所有商品', '布置灵感', '新品推荐'],
+      navContent: [
+        {
+          title: '精选活动',
+          drop: ['5月特惠 2020.5.1-5.31', '更低价格', '好物推荐', '热销排行'],
+          isIcon: true
+
+        }, 
+        {
+          title: '所有房间',
+          drop: ['卧室', '客厅', '厨房', '餐厅', '儿童房', '浴室', '书房和办公室', '门厅', '户外', '阳台'],
+          isIcon: true
+        }, 
+        {
+          title: '所有商品',
+          drop: ['家具', '床和床垫', '储物和收纳', '婴儿和儿童', '纺织品', '橱柜和家电', '餐具和厨具', '浴室产品', 
+                  '灯具照明'],
+          isIcon: true
+        }, 
+        {
+          title: '布置灵感',
+          drop: ['卧室灵感', '客厅灵感', '厨房灵感', '餐厅灵感', '儿童房灵感', '浴室灵感', '书房和办公室灵感', 
+                  '门厅灵感', '户外灵感'],
+          isIcon: true
+        }, 
+        {
+          title: '新品推荐',
+          drop: ['春季新品', 'wifi音箱', '新品故事', '查看所有新品'],
+          isIcon: true
+        }, 
+        {
+          title: '宜家对公业务',
+          drop: [],
+          isIcon: false
+        }
+      ],
       activeIndex: '1'
+    }
+  },
+  computed: {
+    colSpace() {
+      return 'block-col-' + this.navContent.length
+    },
+    span() {
+      return 24/this.navContent.length
     }
   },
   methods: {
@@ -50,5 +111,30 @@ export default {
 
 .detail-nav div {
   flex: 1;
+}
+
+.nav-item {
+  font-weight: 700;
+}
+
+.icon-area {
+  display: flex;
+  padding-top: .3rem;
+}
+
+.icon-area img {
+  flex: 1;
+  cursor: pointer;
+}
+
+.el-dropdown {
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.el-col:last-child, .el-col:last-child div{
+  cursor: default;
+  pointer-events: none;
 }
 </style>

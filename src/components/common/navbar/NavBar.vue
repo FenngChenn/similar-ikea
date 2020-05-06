@@ -30,7 +30,8 @@ export default {
   /* background-color: #ff8198; */
 }
 .right {
-  width: 6rem;
+  width: 12rem;
+  text-align: center;
   /* background-color: lightgreen; */
   /* padding-top: 1rem; */
 }
