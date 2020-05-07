@@ -19,6 +19,8 @@ export default {
   line-height: 44px;
   width: 100%;
   display: flex;
+  background-color: #fff;
+  margin-bottom: 1rem;
 }
 .left {
   width: 8rem;

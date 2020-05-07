@@ -119,7 +119,7 @@ export default {
 
 .icon-area {
   display: flex;
-  padding-top: .3rem;
+  padding-top: 5px;
 }
 
 .icon-area img {
@@ -129,12 +129,17 @@ export default {
 
 .el-dropdown {
   font-weight: 700;
-  font-size: 17px;
   cursor: pointer;
 }
 
 .el-col:last-child, .el-col:last-child div{
   cursor: default;
   pointer-events: none;
+}
+
+@media only screen and (max-width: 1009px) {
+  .detail-nav {
+    display: none;
+  }
 }
 </style>
