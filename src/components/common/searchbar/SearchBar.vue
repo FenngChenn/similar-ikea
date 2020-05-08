@@ -25,7 +25,4 @@ export default {
 
 </script>
 <style scoped>
-.search-bar {
-  margin: 0 1rem;
-}
 </style>

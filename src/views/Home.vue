@@ -6,7 +6,12 @@
       <h1>你的家，听你的</h1>
       <carousel :carouselImg="carouselImg"/>
       <div class="order">
-        <div class="order-item" v-for="item in 3" :key="item"></div>
+        <div class="image-content" v-for="item in gifImg" :key="item">
+          <img :src="item" alt="">
+          <div class="btn-content">
+            <span>了解详情</span>
+          </div>
+        </div>
       </div>
     <!-- </scroll> -->
   </div>
@@ -17,11 +22,6 @@ import SearchBar from '@/components/common/searchbar/SearchBar'
 import Scroll from '@/components/common/scroll/Scroll'
 import Carousel from '@/components/common/carousel/Carousel'
 
-import swiper1 from '@/assets/img/swiper1.jpg'
-import swiper2 from '@/assets/img/swiper2.jpg'
-import swiper3 from '@/assets/img/swiper3.jpg'
-import swiper4 from '@/assets/img/swiper4.jpg'
-import swiper5 from '@/assets/img/swiper5.jpg'
 
 export default {
   name: "Home",
@@ -30,25 +30,28 @@ export default {
       carouselImg: [
         {
           name: 'newhome',
-          src: swiper1
+          src: require('@/assets/img/swiper1.jpg')
         },
         {
           name: 'allhome',
-          src: swiper2
+          src: require('@/assets/img/swiper2.jpg')
         },
         {
           name: 'kitchen',
-          src: swiper3
+          src: require('@/assets/img/swiper3.jpg')
         },
         {
           name: 'public',
-          src: swiper4
+          src: require('@/assets/img/swiper4.jpg')
         },
         {
           name: 'more',
-          src: swiper5
+          src: require('@/assets/img/swiper5.jpg')
         }
-      ]
+      ],
+      gifImg: ['https://www.ikea.cn/images/0b/90/0b90dc115d128de12050591d2bf2ddf8.gif?f=s',
+                'https://www.ikea.cn/images/bc/b7/bcb78af9c298c19a4334d7834fad6cd9.gif?f=s',
+                'https://www.ikea.cn/images/3e/95/3e957e046c9ca5b573c04ed2401b5ac7.gif?f=s']
     };
   },
   components: {
@@ -73,22 +76,36 @@ export default {
 }
 
 .order {
+  /* background-color: #f6f6f6; */
+  /* height: 10rem;
+  width: 100%; */
+  position: relative;
+  max-width: 1200px;
+  min-height: 5rem;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  padding-bottom: 5rem;
 }
 
-.order-item {
-  height: 10rem;
-  /* width: 100%; */
-
-  flex: 1;
+.image-content {
+  flex: 30%;
+}
+.image-content img {
+  width: 100%;
 }
 
-.order-item:nth-child(2n) {
-    background-color: #99a9bf;
+.btn-content {
+  margin: 1.5rem 0;
+}
+.btn-content span {
+  /* border: 1px solid #407ab1; */
+  box-shadow: inset 0 0 0 1px #407ab1;
+  padding: .5rem .8rem;
+  border-radius: .1rem;
+  color: #407ab1;
+  font-size: .875rem;
+  cursor: pointer;
 }
 
-.order-item:nth-child(2n+1) {
-    background-color: #d3dce6;
-}
 </style>
