@@ -3,16 +3,32 @@
   <div id="home">
     <!-- <scroll class="content-scroll" ref="scroll" :probe-type="3"> -->
       <search-bar/>
-      <h1>你的家，听你的</h1>
+      <h1>{{title1}}</h1>
       <carousel :carouselImg="carouselImg"/>
       <div class="order">
         <div class="image-content" v-for="item in gifImg" :key="item">
           <img :src="item" alt="">
-          <div class="btn-content">
-            <span>了解详情</span>
-          </div>
+          <div-to-btn :btnText="btnText1"/>
         </div>
       </div>
+      <div id="title">
+        <h2>{{title2}}</h2>
+      </div>
+      <home-flex>
+        <template v-slot:left>
+          <img src="@/assets/img/flex1-1.jpg" alt="">
+          <img src="@/assets/img/flex1-2.jpg" alt="">
+        </template>
+        <template v-slot:center>
+          <img src="@/assets/img/flex2-1.jpg" alt="">
+          <img src="@/assets/img/flex2-2.jpg" alt="">
+        </template>
+        <template v-slot:right>
+          <img src="@/assets/img/flex3-1.jpg" alt="">
+          <img src="@/assets/img/flex3-2.jpg" alt="">
+        </template>
+      </home-flex>
+      <div-to-btn :btnText="btnText2"/>
     <!-- </scroll> -->
   </div>
 </template>
@@ -21,12 +37,17 @@
 import SearchBar from '@/components/common/searchbar/SearchBar'
 import Scroll from '@/components/common/scroll/Scroll'
 import Carousel from '@/components/common/carousel/Carousel'
+import DivToBtn from '@/components/common/divtobtn/DivToBtn'
+
+import HomeFlex from '@/components/content/home/HomeFlex'
 
 
 export default {
   name: "Home",
   data () {
     return {
+      title1: '你的家，听你的',
+      title2: '迎接春天，发现家的心意',
       carouselImg: [
         {
           name: 'newhome',
@@ -51,13 +72,22 @@ export default {
       ],
       gifImg: ['https://www.ikea.cn/images/0b/90/0b90dc115d128de12050591d2bf2ddf8.gif?f=s',
                 'https://www.ikea.cn/images/bc/b7/bcb78af9c298c19a4334d7834fad6cd9.gif?f=s',
-                'https://www.ikea.cn/images/3e/95/3e957e046c9ca5b573c04ed2401b5ac7.gif?f=s']
+                'https://www.ikea.cn/images/3e/95/3e957e046c9ca5b573c04ed2401b5ac7.gif?f=s'],
+      btnText1: '了解详情',
+      btnText2: '查看更多房间'
     };
   },
   components: {
     SearchBar,
     Scroll,
-    Carousel
+    Carousel,
+    HomeFlex,
+    DivToBtn
+  },
+  mounted() {
+    document.querySelector('home-flex img').addEventListener('click', () => {
+      console.log('aaaaaaaa')
+    })
   }
 }
 
@@ -66,7 +96,7 @@ export default {
 #home {
   position: relative;
   text-align: center;
-  height: 100vh;
+  /* height: 100vh; */
   padding-bottom: 3rem;
 }
 
@@ -86,6 +116,7 @@ export default {
   display: flex;
   justify-content: space-evenly;
   padding-bottom: 5rem;
+  border-bottom: 2px solid rgba(154, 154, 154, .3);
 }
 
 .image-content {
@@ -95,17 +126,10 @@ export default {
   width: 100%;
 }
 
-.btn-content {
-  margin: 1.5rem 0;
+#title {
+  margin: 2rem auto;
 }
-.btn-content span {
-  /* border: 1px solid #407ab1; */
-  box-shadow: inset 0 0 0 1px #407ab1;
-  padding: .5rem .8rem;
-  border-radius: .1rem;
-  color: #407ab1;
-  font-size: .875rem;
-  cursor: pointer;
+#title h2 {
+  font-size: 1.625rem;
 }
-
 </style>

@@ -48,7 +48,7 @@ export default {
 #carousel {
   position: relative;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
 
 #carousel img {
