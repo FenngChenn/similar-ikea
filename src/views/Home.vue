@@ -16,16 +16,13 @@
       </div>
       <home-flex>
         <template v-slot:left>
-          <img src="@/assets/img/flex1-1.jpg" alt="">
-          <img src="@/assets/img/flex1-2.jpg" alt="">
+          <img v-for="item in roomsImg1" :key="item.id" :src="item.ref" @click="toRooms(item.id)">
         </template>
         <template v-slot:center>
-          <img src="@/assets/img/flex2-1.jpg" alt="">
-          <img src="@/assets/img/flex2-2.jpg" alt="">
+          <img v-for="item in roomsImg2" :key="item.id" :src="item.ref" @click="toRooms(item.id)">
         </template>
         <template v-slot:right>
-          <img src="@/assets/img/flex3-1.jpg" alt="">
-          <img src="@/assets/img/flex3-2.jpg" alt="">
+          <img v-for="item in roomsImg3" :key="item.id" :src="item.ref" @click="toRooms(item.id)">
         </template>
       </home-flex>
       <div-to-btn :btnText="btnText2"/>
@@ -74,7 +71,34 @@ export default {
                 'https://www.ikea.cn/images/bc/b7/bcb78af9c298c19a4334d7834fad6cd9.gif?f=s',
                 'https://www.ikea.cn/images/3e/95/3e957e046c9ca5b573c04ed2401b5ac7.gif?f=s'],
       btnText1: '了解详情',
-      btnText2: '查看更多房间'
+      btnText2: '查看更多房间',
+      roomsImg1: [
+        {
+          id: 'parlour',
+          ref: require('@/assets/img/flex1-1.jpg')
+        },{
+          id: 'bedroom',
+          ref: require('@/assets/img/flex1-2.jpg')
+        }
+      ],
+      roomsImg2: [
+        {
+          id: 'kidroom',
+          ref: require('@/assets/img/flex2-1.jpg')
+        },{
+          id: 'restaurant',
+          ref: require('@/assets/img/flex2-2.jpg')
+        }
+      ],
+      roomsImg3: [
+        {
+          id: 'kitchen',
+          ref: require('@/assets/img/flex3-1.jpg')
+        },{
+          id: 'bathroom',
+          ref: require('@/assets/img/flex3-2.jpg')
+        }
+      ]
     };
   },
   components: {
@@ -85,9 +109,11 @@ export default {
     DivToBtn
   },
   mounted() {
-    document.querySelector('home-flex img').addEventListener('click', () => {
-      console.log('aaaaaaaa')
-    })
+  },
+  methods: {
+    toRooms(id) {
+      this.$router.push('/'+id)
+    }
   }
 }
 

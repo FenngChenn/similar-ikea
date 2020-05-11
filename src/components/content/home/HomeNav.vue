@@ -22,8 +22,9 @@
               </span>
               <!-- v-if="item.drop.length === 0" -->
               <el-dropdown-menu>
-                <el-dropdown-item v-for="(sonItem, sonIndex) in item.drop" :key="sonIndex">
-                  {{sonItem}}
+                <el-dropdown-item v-for="sonItem in item.drop" :key="sonItem.id" @click.native="toDetail(sonItem.id)">
+                  <!-- <router-link to="/tehui">{{sonItem}}</router-link> -->
+                  {{sonItem.name}}
                 </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
@@ -52,7 +53,8 @@ export default {
       navContent: [
         {
           title: '精选活动',
-          drop: ['5月特惠 2020.5.1-5.31', '更低价格', '好物推荐', '热销排行'],
+          drop: [{id: 'tehui', name: '5月特惠 2020.5.1-5.31'}, {id: 'lower', name: '更低价格'}, 
+                 {id: 'recommend', name: '好物推荐'}, {id: 'hot', name: '热销排行'}],
           isIcon: true
 
         }, 
@@ -98,6 +100,9 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath)
+    },
+    toDetail(id) {
+      this.$router.push('/tehui')
     }
   }
 }
