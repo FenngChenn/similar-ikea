@@ -1,9 +1,7 @@
 <!-- 主页中不动地方的导航栏 -->
 <template>
   <nav-bar>
-    <div slot="left">
-      <img src="@/assets/img/ikea-logo.svg" alt="">
-    </div>
+    <img slot="left" src="@/assets/img/ikea-logo.svg" alt="">
     <div slot="center">
       <div class="detail-nav">
         <!-- <div class="nav-item" v-for="(item, index) in navContent" :key="index">
@@ -33,9 +31,9 @@
       </div>
     </div>
     <div slot="right" class="icon-area">
-      <img src="@/assets/img/user.svg" alt="">
-      <img src="@/assets/img/wish.svg" alt="">
-      <img src="@/assets/img/shopbag.svg" alt="">
+      <div @click="toLogin"><img src="@/assets/img/user.svg" alt=""></div>
+      <div><img src="@/assets/img/wish.svg" alt=""></div>
+      <div><img src="@/assets/img/shopbag.svg" alt=""></div>
     </div>
   </nav-bar>
 </template>
@@ -103,6 +101,18 @@ export default {
     },
     toDetail(id) {
       this.$router.push('/tehui')
+    },
+    toLogin() {
+      let that = this;
+      let redirect = '/';
+      if(this.$localStorage.get('currentName') === null) {
+        redirect = '/login'
+      }else{
+        redirect = '/user'
+      }
+      this.$router.push({
+        path: redirect
+      })
     }
   }
 }
@@ -124,12 +134,23 @@ export default {
 
 .icon-area {
   display: flex;
-  padding-top: 5px;
+  height: 100%;
 }
 
-.icon-area img {
+.icon-area div {
   flex: 1;
   cursor: pointer;
+  position: relative;
+  border-radius: 80%;
+}
+.icon-area div:hover {
+  background-color: #eee;
+} 
+.icon-area div img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .el-dropdown {

@@ -3,9 +3,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+//element-ui
 import ElementUI from 'element-ui'
 import '../node_modules/element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
+
+//vue-localstorage
+import VueLocalStorage from 'vue-localstorage'
+Vue.use(VueLocalStorage)
 
 import '@/assets/css/base.css';
 
@@ -16,3 +21,4 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
