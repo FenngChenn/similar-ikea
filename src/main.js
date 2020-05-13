@@ -22,3 +22,11 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
+
+// let user = [{name: 'Mary', pass: '12345'}, {name: 'Tom', pass: '123'}, {name: 'Tony', pass: '456'}];
+// let u1 = {name: 'Tony'}
+// for(let u of user){
+//   if(u1.name === u.name){
+//     console.log(u1.name)
+//   }
+// }

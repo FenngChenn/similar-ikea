@@ -109,9 +109,10 @@ export default {
     DivToBtn
   },
   mounted() {
-    let user = [{name: 'Mary', age: 12}];
-    this.$localStorage.set('users', JSON.stringify(user))
-    // console.log(JSON.parse(this.$localStorage.get('users')))
+    // localStorage.clear()
+    let user = [{name: 'mary', pass: '12345'}];
+    // this.$localStorage.set('users', JSON.stringify(user))
+    console.log(JSON.parse(this.$localStorage.get('users')))
   },
   methods: {
     toRooms(id) {

@@ -5,7 +5,9 @@ Vue.use(VueRouter)
 
 const Home = () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
 const Parlour = () => import('../views/parlour/Parlour')
-const UserLogin = () => import('../views/login/UserLogin')
+const UserRegister = () => import('../views/user/UserRegister')
+const UserLogin = () => import('../views/user/UserLogin')
+const UserInfo = () => import('../views/user/UserInfo')
 
 const routes = [
   {
@@ -18,8 +20,16 @@ const routes = [
     component: Parlour
   },
   {
+    path: '/register',
+    component: UserRegister
+  },
+  {
     path: '/login',
     component: UserLogin
+  },
+  {
+    path: '/user',
+    component: UserInfo
   }
   // ,{
     // path: '/about',
