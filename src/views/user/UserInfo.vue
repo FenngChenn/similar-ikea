@@ -1,6 +1,8 @@
 <!--  -->
 <template>
-  <div>我的档案</div>
+  <div class="user-info" v-loading="loading">
+    <div class="title">我的个人档案</div>
+  </div>
 </template>
 
 <script>
@@ -8,8 +10,14 @@ export default {
   name: "UserInfo",
   data () {
     return {
+      loading: true
     };
-  }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false
+    }, 800);
+  },
 }
 
 </script>

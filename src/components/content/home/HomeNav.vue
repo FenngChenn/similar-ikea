@@ -31,9 +31,9 @@
       </div>
     </div>
     <div slot="right" class="icon-area">
-      <div @click="toLogin"><img src="@/assets/img/user.svg" alt=""></div>
-      <div><img src="@/assets/img/wish.svg" alt=""></div>
-      <div><img src="@/assets/img/shopbag.svg" alt=""></div>
+      <div @click="toLogin"><img src="@/assets/img/user.svg" alt="" title="我的"></div>
+      <div><img src="@/assets/img/wish.svg" alt="" title="心愿单"></div>
+      <div><img src="@/assets/img/shopbag.svg" alt="" title="购物袋"></div>
     </div>
   </nav-bar>
 </template>

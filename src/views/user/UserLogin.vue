@@ -1,6 +1,6 @@
 <!-- 用户登录界面 -->
 <template>
-  <div class="login">
+  <div class="login" v-loading="loading">
     <h1>登录</h1>
     <el-form ref="loginForm" :model="loginForm" :rules="rules" :label-position="labelPosition" 
           status-icon @submit.native.prevent>
@@ -13,6 +13,9 @@
       <el-form-item>
         <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
         <el-button @click="resetForm('loginForm')">重置</el-button>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="text" @click="toRegister">去注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -49,24 +52,53 @@ export default {
         pass: [
           {validator: validatePass, trigger: 'blur'}
         ]
-      }
+      },
+      loading: true
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false
+    }, 800);
   },
   methods: {
     submitForm(formName) {
-      console.log(JSON.parse(this.$localStorage.get('users')))
+      // console.log(JSON.parse(this.$localStorage.get('users')))
       this.$refs[formName].validate((valid) => {
         if(valid) {
           let path = '';
           let users = JSON.parse(this.$localStorage.get('users'))
-          for(let user of users) {
-            if(this.loginForm.name === user.name) {
-              this.$localStorage.set('currentName', JSON.stringify(this.loginForm.name))
-              path = '/user';
-              break;
-            }else{
-              path = '/register'
+          if(users) {
+            for(let user of users) {
+              if(this.loginForm.name === user.name) {
+                if(this.loginForm.pass === user.pass) {
+                  this.$localStorage.set('currentName', JSON.stringify(this.loginForm.name))
+                  path = '/user';
+                  break;
+                }else{
+                  this.$message.error({
+                    message: '用户密码输入有误',
+                    center: true
+                  })
+                }
+              }else{
+                this.$confirm('此账号不存在！是否创建？', '提示', {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                  type: 'warning'
+                }).then(() => {
+                  console.log('success')
+                  this.$router.push('/register')
+                }).catch(() => {
+                  this.$router.push('/')
+                });
+              }
             }
+          }else{
+            this.$message({
+              message: '无用户存在！',
+              type: 'warning'
+            })
           }
           this.$router.push({
             path: path
@@ -79,6 +111,9 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    toRegister() {
+      this.$router.push('/register')
     }
   }
 }
