@@ -94,7 +94,7 @@ export default {
           // 把新数据再放回localStorage中
           this.$localStorage.set('users', JSON.stringify(users))
           this.$router.push({
-            path: '/user'
+            path: '/user/'+this.registerForm.name
           })
         }else {
           console.log('error submit');

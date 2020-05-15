@@ -31,9 +31,9 @@
       </div>
     </div>
     <div slot="right" class="icon-area">
-      <div @click="toLogin"><img src="@/assets/img/user.svg" alt="" title="我的"></div>
-      <div><img src="@/assets/img/wish.svg" alt="" title="心愿单"></div>
-      <div><img src="@/assets/img/shopbag.svg" alt="" title="购物袋"></div>
+      <div @click="toUser('login')"><img src="@/assets/img/user.svg" alt="" title="我的"></div>
+      <div @click="toUser('wish')"><img src="@/assets/img/wish.svg" alt="" title="心愿单"></div>
+      <div @click="toUser('shop')"><img src="@/assets/img/shopbag.svg" alt="" title="购物袋"></div>
     </div>
   </nav-bar>
 </template>
@@ -84,7 +84,8 @@ export default {
           isIcon: false
         }
       ],
-      activeIndex: '1'
+      activeIndex: '1',
+      currentUser: JSON.parse(this.$localStorage.get('currentName'))
     }
   },
   computed: {
@@ -102,13 +103,22 @@ export default {
     toDetail(id) {
       this.$router.push('/tehui')
     },
-    toLogin() {
+    toUser(arg) {
+      console.log(this.currentUser)
       let that = this;
-      let redirect = '/';
-      if(this.$localStorage.get('currentName') === null) {
+      let redirect = '';
+      if(this.currentUser === null || this.currentUser === undefined) {
         redirect = '/login'
       }else{
-        redirect = '/user'
+        if(arg === 'login') {
+          const user = 'admin'
+          // redirect = '/user/${user}'
+          this.$router.push({name: 'userInfo', params: { user }})
+        }else if(arg === 'wish') {
+          redirect = '/user/'+this.currentUser+'/wishlist'
+        }else{
+          redirect = '/user/'+this.currentUser+'/shopbag'
+        }
       }
       this.$router.push({
         path: redirect

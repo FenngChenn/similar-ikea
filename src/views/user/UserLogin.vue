@@ -73,7 +73,7 @@ export default {
               if(this.loginForm.name === user.name) {
                 if(this.loginForm.pass === user.pass) {
                   this.$localStorage.set('currentName', JSON.stringify(this.loginForm.name))
-                  path = '/user';
+                  path = '/user/'+this.loginForm.name;
                   break;
                 }else{
                   this.$message.error({

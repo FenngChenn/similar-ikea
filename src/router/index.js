@@ -13,6 +13,8 @@ const Parlour = () => import('../views/parlour/Parlour')
 const UserRegister = () => import('../views/user/UserRegister')
 const UserLogin = () => import('../views/user/UserLogin')
 const UserInfo = () => import('../views/user/UserInfo')
+const UserWishlist = () => import('../views/user/UserWishlist')
+const UserShopbag = () => import('../views/user/UserShopbag')
 
 const routes = [
   {
@@ -33,8 +35,16 @@ const routes = [
     component: UserLogin
   },
   {
-    path: '/user',
-    component: UserInfo
+    path: '/user/:name',
+    name: 'userInfo',
+    component: UserInfo,
+    children: [{
+      path: 'wishlist',
+      component: UserWishlist
+    },{
+      path: 'shopbag',
+      component: UserShopbag
+    }]
   }
   // ,{
     // path: '/about',
