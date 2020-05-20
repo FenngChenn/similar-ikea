@@ -5,7 +5,12 @@
 
 <script>
 export default {
-  name: "UserWishlist"
+  name: "UserWishlist",
+  data() {
+    return {
+      
+    }
+  }
 }
 
 </script>

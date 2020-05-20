@@ -1,7 +1,7 @@
 <!-- 主页中不动地方的导航栏 -->
 <template>
   <nav-bar>
-    <img slot="left" src="@/assets/img/ikea-logo.svg" alt="">
+    <img class="logo" slot="left" src="@/assets/img/ikea-logo.svg" alt="" @click="toHome">
     <div slot="center">
       <div class="detail-nav">
         <!-- <div class="nav-item" v-for="(item, index) in navContent" :key="index">
@@ -97,6 +97,9 @@ export default {
     }
   },
   methods: {
+    toHome() {
+      this.$router.push('/')
+    },
     handleSelect(key, keyPath) {
       console.log(key, keyPath)
     },
@@ -111,9 +114,9 @@ export default {
         redirect = '/login'
       }else{
         if(arg === 'login') {
-          const user = 'admin'
+          const user = this.currentUser
           // redirect = '/user/${user}'
-          this.$router.push({name: 'userInfo', params: { user }})
+          this.$router.push({name: 'userInfo', params: {name: user }})
         }else if(arg === 'wish') {
           redirect = '/user/'+this.currentUser+'/wishlist'
         }else{
@@ -129,6 +132,9 @@ export default {
 
 </script>
 <style scoped>
+.logo {
+  cursor: pointer;
+}
 .detail-nav {
   display: flex;
   padding-right: 4rem;

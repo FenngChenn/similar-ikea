@@ -38,13 +38,16 @@ const routes = [
     path: '/user/:name',
     name: 'userInfo',
     component: UserInfo,
-    children: [{
-      path: 'wishlist',
-      component: UserWishlist
-    },{
-      path: 'shopbag',
-      component: UserShopbag
-    }]
+    children: [
+      {
+        path: 'wishlist',
+        component: UserWishlist
+      },
+      {
+        path: 'shopbag',
+        component: UserShopbag
+      }
+    ]
   }
   // ,{
     // path: '/about',

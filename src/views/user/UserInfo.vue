@@ -13,7 +13,8 @@ export default {
   name: "UserInfo",
   data () {
     return {
-      loading: true
+      loading: true,
+      wishlist: ['candy', 'coffee']
     };
   },
   mounted() {
@@ -21,6 +22,11 @@ export default {
       this.loading = false
     }, 800);
   },
+  beforeRouteLeave(to, from, next) {
+    this.wishlist.push('bed')
+    console.log(this.wishlist)
+    next()
+  }
 }
 
 </script>

@@ -89,7 +89,14 @@ export default {
           user.name = this.registerForm.name;
           user.pass = this.registerForm.pass;
           // 取出localStorage中的用户信息
-          const users = JSON.parse(this.$localStorage.get('users'))
+          let users = JSON.parse(this.$localStorage.get('users'))
+          // if(users === null) {
+          //   users = []
+          //   users.push(user)
+          // }else {
+          //   users.push(user)
+          // }
+          users = users ? users : []
           users.push(user)
           // 把新数据再放回localStorage中
           this.$localStorage.set('users', JSON.stringify(users))
