@@ -19,33 +19,45 @@ const UserShopbag = () => import('../views/user/UserShopbag')
 const routes = [
   {
     path: '/',
-    // name: 'Home',
-    component: Home
+    name: 'home',
+    component: Home,
+    meta: { requireAuth: false }
   },
   {
     path: '/parlour',
-    component: Parlour
+    name: 'parlour',
+    component: Parlour,
+    meta: { requireAuth: true }
   },
   {
     path: '/register',
-    component: UserRegister
+    name: 'register',
+    component: UserRegister,
+    meta: { requireAuth: false }
   },
   {
     path: '/login',
-    component: UserLogin
+    name: 'login',
+    component: UserLogin,
+    meta: { requireAuth: false }
   },
   {
     path: '/user/:name',
     name: 'userInfo',
     component: UserInfo,
+    meta: { requireAuth: true },
     children: [
       {
         path: 'wishlist',
-        component: UserWishlist
+        name: 'wishlist',
+        component: UserWishlist,
+        meta: { requireAuth: true }
       },
       {
         path: 'shopbag',
-        component: UserShopbag
+        name: 'shopbag',
+        component: UserShopbag,
+        meta: { requireAuth: true }
       }
     ]
   }
