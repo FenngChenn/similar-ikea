@@ -100,8 +100,8 @@ export default {
           users.push(user)
           // 把新数据再放回localStorage中
           this.$localStorage.set('users', JSON.stringify(users))
-          this.$localStorage.set('currentName', JSON.stringify(this.registerForm.name))
-          // console.log(JSON.parse(this.$localStorage.get('currentName')))
+          this.$localStorage.set('currentUser', JSON.stringify(user))
+          console.log(JSON.parse(this.$localStorage.get('currentUser')))
           this.$router.push({
             path: '/user/'+this.registerForm.name
           })

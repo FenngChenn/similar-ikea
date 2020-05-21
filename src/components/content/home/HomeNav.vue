@@ -85,7 +85,7 @@ export default {
         }
       ],
       activeIndex: '1',
-      currentUser: JSON.parse(this.$localStorage.get('currentName'))
+      currentUser: JSON.parse(this.$localStorage.get('currentUser'))
     }
   },
   computed: {
@@ -107,20 +107,19 @@ export default {
       this.$router.push('/tehui')
     },
     toUser(arg) {
-      console.log(this.currentUser)
-      let that = this;
+      console.log('当前用户是：', this.currentUser)
       let redirect = '';
       if(this.currentUser === null || this.currentUser === undefined) {
         redirect = '/login'
       }else{
+        const user = this.currentUser
         if(arg === 'login') {
-          const user = this.currentUser
           // redirect = '/user/${user}'
-          this.$router.push({name: 'userInfo', params: {name: user }})
+          this.$router.push({name: 'userInfo', params: {name: user.name }})
         }else if(arg === 'wish') {
-          redirect = '/user/'+this.currentUser+'/wishlist'
+          redirect = '/user/'+user.name+'/wishlist'
         }else{
-          redirect = '/user/'+this.currentUser+'/shopbag'
+          redirect = '/user/'+user.name+'/shopbag'
         }
       }
       this.$router.push({

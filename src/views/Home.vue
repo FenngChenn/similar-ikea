@@ -108,12 +108,6 @@ export default {
     HomeFlex,
     DivToBtn
   },
-  mounted() {
-    // localStorage.clear()
-    // let user = [{name: 'admin', pass: '123'}];
-    // this.$localStorage.set('users', JSON.stringify(user))
-    console.log(JSON.parse(this.$localStorage.get('users')))
-  },
   methods: {
     toRooms(id) {
       this.$router.push('/'+id)

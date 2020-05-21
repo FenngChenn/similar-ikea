@@ -21,13 +21,13 @@ router.beforeEach((to, from, next) => {
   console.log('上一个页面', from)
   console.log('下一个页面', to)
 
-  // let currentUser = JSON.parse(Vue.VueLocalStorage.get('currentName'))
-  let currentUser = localStorage.users
+
+
+  let currentUser = Vue.localStorage.get('currentUser')
   console.log('当前用户是：', currentUser)
 
   if(to.meta.requireAuth) {
-    if(currentUser) {
-      console.log('next')
+    if(currentUser !== null) {
       next()
     }else {
       next({

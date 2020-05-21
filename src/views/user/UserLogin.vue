@@ -72,7 +72,7 @@ export default {
             for(let user of users) {
               if(this.loginForm.name === user.name) {
                 if(this.loginForm.pass === user.pass) {
-                  this.$localStorage.set('currentName', JSON.stringify(this.loginForm.name))
+                  this.$localStorage.set('currentUser', JSON.stringify(this.loginForm))
                   path = '/user/'+this.loginForm.name;
                   break;
                 }else{

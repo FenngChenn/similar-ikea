@@ -12,6 +12,14 @@ export default {
   name: 'App',
   components: {
     HomeNav
+  },
+  mounted() {
+    // localStorage.clear()
+    // let user = [{name: 'admin', pass: '123'}];
+    // this.$localStorage.set('users', JSON.stringify(user))
+    // this.$localStorage.remove('users')
+    // console.log(JSON.parse(this.$localStorage.get('aaa')))
+    
   }
 }
 </script>
