@@ -8,8 +8,9 @@ VueRouter.prototype.push = function push(location) {
 
 Vue.use(VueRouter)
 
+// 路由懒加载模式
 const Home = () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
-const Parlour = () => import('../views/parlour/Parlour')
+const Parlour = () => import(/**/'../views/parlour/Parlour')
 const UserRegister = () => import('../views/user/UserRegister')
 const UserLogin = () => import('../views/user/UserLogin')
 const UserInfo = () => import('../views/user/UserInfo')
@@ -24,7 +25,7 @@ const routes = [
     meta: { requireAuth: false }
   },
   {
-    path: '/parlour',
+    path: '/tehui',
     name: 'parlour',
     component: Parlour,
     meta: { requireAuth: true }

@@ -31,7 +31,7 @@
       </div>
     </div>
     <div slot="right" class="icon-area">
-      <div @click="toUser('login')"><img src="@/assets/img/user.svg" alt="" title="我的"></div>
+      <div @click="toUser('user')"><img src="@/assets/img/user.svg" alt="" title="我的"></div>
       <div @click="toUser('wish')"><img src="@/assets/img/wish.svg" alt="" title="心愿单"></div>
       <div @click="toUser('shop')"><img src="@/assets/img/shopbag.svg" alt="" title="购物袋"></div>
     </div>
@@ -39,12 +39,14 @@
 </template>
 
 <script>
-import NavBar from '@/components/common/navbar/NavBar'
+// import NavBar from '@/components/common/navbar/NavBar'
+// 组件懒加载
+const NavBar = () => import('@/components/common/navbar/NavBar')
 
 export default {
   name: "HomeNav",
   components: {
-    NavBar
+    'nav-bar': NavBar
   },
   data() {
     return {
@@ -113,8 +115,9 @@ export default {
         redirect = '/login'
       }else{
         const user = this.currentUser
-        if(arg === 'login') {
+        if(arg === 'user') {
           // redirect = '/user/${user}'
+          console.log(this.$route.params.name)
           this.$router.push({name: 'userInfo', params: {name: user.name }})
         }else if(arg === 'wish') {
           redirect = '/user/'+user.name+'/wishlist'
