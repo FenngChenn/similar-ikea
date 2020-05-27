@@ -13,7 +13,7 @@
         </li>
       </ul>
     </div>
-    <router-view></router-view>
+    <router-view :test="test"></router-view>
   </div>
 </template>
 
@@ -34,7 +34,8 @@ export default {
     setTimeout(() => {
       this.loading = false
     }, 800);
-    console.log('当前用户是：', typeof(this.currentUser))
+    // console.log('当前用户是：', typeof(this.currentUser))
+    console.log(this.$route.params)
   },
   beforeRouteLeave(to, from, next) {
     this.wishlist.push('bed')
@@ -54,6 +55,9 @@ export default {
       }).catch(err => {
         console.log(err)
       })
+    },
+    test() {
+      console.log('testtttttttt')
     }
   }
 }
