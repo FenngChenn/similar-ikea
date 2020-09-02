@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import axios from 'axios'
 
 //element-ui
 import ElementUI from 'element-ui'
@@ -16,25 +17,27 @@ import '@/assets/css/base.css';
 
 Vue.config.productionTip = false
 
+Vue.prototype.$axios = axios
+
 
 router.beforeEach((to, from, next) => {
-  console.log('上一个页面', from)
-  console.log('下一个页面', to)
+  // console.log('上一个页面', from)
+  // console.log('下一个页面', to)
 
 
 
   let currentUser = Vue.localStorage.get('currentUser')
-  console.log('当前用户是：', currentUser)
+  // console.log('当前用户是：', currentUser)
 
-  if(to.meta.requireAuth) {
-    if(currentUser !== null) {
+  if (to.meta.requireAuth) {
+    if (currentUser !== null) {
       next()
-    }else {
+    } else {
       next({
         path: '/login'
       })
     }
-  }else {
+  } else {
     next()
   }
 })
@@ -54,3 +57,22 @@ new Vue({
 //     console.log(u1.name)
 //   }
 // }
+
+/*var person = {
+  name: '张三'
+}
+
+var proxy = new Proxy(person, {
+  get: (target, propKey) => {
+    if(propKey in target) {
+      console.log(target[propKey])
+    }else {
+      throw new ReferenceError("Prop name \"" + propKey + "\" does not exist.")
+    }
+  }
+})
+
+proxy.name;
+proxy.age;*/
+
+

@@ -10,12 +10,12 @@ Vue.use(VueRouter)
 
 // 路由懒加载模式
 const Home = () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
-const Parlour = () => import(/**/'../views/parlour/Parlour')
-const UserRegister = () => import('../views/user/UserRegister')
-const UserLogin = () => import('../views/user/UserLogin')
-const UserInfo = () => import('../views/user/UserInfo')
-const UserWishlist = () => import('../views/user/UserWishlist')
-const UserShopbag = () => import('../views/user/UserShopbag')
+const Parlour = () => import(/* webpackChunkName: "Parlour" */'../views/parlour/Parlour')
+const UserRegister = () => import(/* webpackChunkName: "UserRegister" */'../views/user/UserRegister')
+const UserLogin = () => import(/* webpackChunkName: "UserLogin" */'../views/user/UserLogin')
+const UserInfo = () => import(/* webpackChunkName: "UserInfo" */'../views/user/UserInfo')
+const UserWishlist = () => import(/* webpackChunkName: "UserWishlist" */'../views/user/UserWishlist')
+const UserShopbag = () => import(/* webpackChunkName: "UserShopbag" */'../views/user/UserShopbag')
 
 const routes = [
   {
@@ -25,7 +25,7 @@ const routes = [
     meta: { requireAuth: false }
   },
   {
-    path: '/tehui',
+    path: '/parlour',
     name: 'parlour',
     component: Parlour,
     meta: { requireAuth: true }
@@ -63,12 +63,12 @@ const routes = [
     ]
   }
   // ,{
-    // path: '/about',
-    // name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  // path: '/about',
+  // name: 'About',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
 ]
 

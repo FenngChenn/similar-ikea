@@ -24,6 +24,7 @@
     "@vue/cli-service": "~4.3.0",
     "css-loader": "^3.5.3",
     "style-loader": "^1.2.1",
+    "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.6.11"
   }
