@@ -2,7 +2,7 @@
 <template>
   <div class="user-info" v-loading="loading">
     <div class="title">
-      <span class="mini-title">我的个人档案----{{$route.params.name}}</span>
+      <span class="mini-title">我的个人档案 你好 {{$route.params.name}}！</span>
       <el-button type="text" @click="logout">退出登录</el-button>
       <!-- <el-button type="primary" @click="jumpto">跳转到百度</el-button> -->
     </div>
@@ -67,6 +67,14 @@
   @import '~assets/css/main.styl'
 
   .title
+    height: 100px
+    background-color: #f5f5f5
+    padding: 30px
     display: flex
-    justify-content: space-around
+    justify-content: space-between
+
+    .mini-title
+      text-align: center
+      line-height: 40px
+      font-weight: 600
 </style>
