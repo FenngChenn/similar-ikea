@@ -66,6 +66,7 @@
 
     h1
       text-align: center
+      font-size: (1 / $r) * 59
 
     .todo-list
       width: 80%

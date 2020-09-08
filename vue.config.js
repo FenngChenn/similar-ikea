@@ -1,6 +1,13 @@
 const path = require('path')
 module.exports = {
   outputDir: 'dist',
+  css: {
+    loaderOptions: {
+      stylus: {
+        import: '~assets/css/theme.styl'
+      }
+    }
+  },
   configureWebpack: config => {
     Object.assign(config, {
       resolve: {

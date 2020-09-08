@@ -23,12 +23,10 @@
 </script>
 
 <style lang="stylus" scoped>
-  @import '~assets/css/theme.styl'
-
   .list-item
-    padding: 10px
+    padding: (1 / $r) * 18
     font-weight: 600
-    font-size: 18px
+    font-size: (1 / $r) * 33
     border-top: 1px solid rgba(0, 0, 0, 0.1)
     display: flex
     justify-content: space-between
@@ -36,11 +34,12 @@
     &:hover
       button:after
         content: 'x'
+        font-size: (1 / $r) * 44
         color: $red
 
     input
       clearStyle()
-      width: 50px
+      width: (1 / $r) * 92
 
       &:after
         content: url('~assets/img/unchecked.svg')
@@ -50,6 +49,7 @@
 
     label
       flex: 1
+      font-size: (1 / $r) * 44
 
     button
       clearStyle()

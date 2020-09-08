@@ -134,44 +134,45 @@
     },
   }
 </script>
-<style scoped>
-  #home {
-    position: relative;
-    text-align: center;
+<style lang="stylus" scoped>
+  $r = 100rem
+
+  #home
+    position: relative
+    text-align: center
     /* height: 100vh; */
-    padding-bottom: 3rem;
-  }
+    padding-bottom: 0.86rem
 
-  .content-scroll {
-    height: calc(100% - 44px - 3rem);
-    overflow: hidden;
-  }
+    h1
+      font-size: (1 / $r) * 59
+      margin: (1 / $r) * 30 0
 
-  .order {
+  .content-scroll
+    height: calc(100% - (1 / $r) * 81 - (1 / $r) * 88.3)
+    overflow: hidden
+
+  .order
     /* background-color: #f6f6f6; */
     /* height: 10rem;
     width: 100%; */
-    position: relative;
-    max-width: 1200px;
-    min-height: 5rem;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-evenly;
-    padding-bottom: 5rem;
-    border-bottom: 2px solid rgba(154, 154, 154, 0.3);
-  }
+    position: relative
+    max-width: 1200px
+    min-height: (1 / $r) * 147
+    margin: 0 auto
+    display: flex
+    justify-content: space-evenly
+    padding-bottom: (1 / $r) * 147
+    border-bottom: 2px solid rgba(154, 154, 154, 0.3)
 
-  .image-content {
-    flex: 30%;
-  }
-  .image-content img {
-    width: 100%;
-  }
+  .image-content
+    flex: 30%
 
-  #title {
-    margin: 2rem auto;
-  }
-  #title h2 {
-    font-size: 1.625rem;
-  }
+  .image-content img
+    width: 100%
+
+  #title
+    margin: 2rem auto
+
+  #title h2
+    font-size: (1 / $r) * 48
 </style>

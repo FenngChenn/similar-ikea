@@ -67,14 +67,14 @@
   @import '~assets/css/main.styl'
 
   .title
-    height: 100px
+    height: (1 / $r) * 184
     background-color: #f5f5f5
-    padding: 30px
+    padding: (1 / $r) * 55
     display: flex
     justify-content: space-between
 
     .mini-title
       text-align: center
-      line-height: 40px
+      line-height: (1 / $r) * 74
       font-weight: 600
 </style>
