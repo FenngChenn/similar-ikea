@@ -1,5 +1,5 @@
 <template>
-  <div class="list-item">
+  <div class="list-item" :class="{completed: currentItem.completed}">
     <input type="checkbox" v-model="currentItem.completed" />
     <label>{{currentItem.content}}</label>
     <button @click="deleteItem"></button>
@@ -37,9 +37,15 @@
         font-size: (1 / $r) * 44
         color: $red
 
+    &.completed
+      label
+        color: #d9d9d9
+        text-decoration: line-through
+
     input
       clearStyle()
       width: (1 / $r) * 92
+      padding-top: (1 / $r) * 8
 
       &:after
         content: url('~assets/img/unchecked.svg')
@@ -50,6 +56,8 @@
     label
       flex: 1
       font-size: (1 / $r) * 44
+      padding-top: (1 / $r) * 8
+      transition: color 0.6s
 
     button
       clearStyle()

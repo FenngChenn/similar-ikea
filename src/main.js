@@ -13,6 +13,15 @@ Vue.use(ElementUI)
 import VueLocalStorage from 'vue-localstorage'
 Vue.use(VueLocalStorage)
 
+//vue2-storage
+import { Vue2Storage } from 'vue2-storage'
+Vue.use(Vue2Storage, {
+  prefix: 'ikea_', //要添加到key值之前的字符串，以防和其他键名冲突，默认为app_
+  driver: 'local', //使用存储的标志符 local/session/memory => localStorage/sessionStorage/memoryStorage
+  ttl: 60 * 60 * 24 * 1000  //24 hours 生命周期
+})
+
+
 import '@/assets/css/base.css';
 
 Vue.config.productionTip = false

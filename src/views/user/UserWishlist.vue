@@ -9,11 +9,13 @@
         v-model="product"
         placeholder="来这里记录你心仪的产品吧！"
         @keyup.enter="addTodo"
+        autofocus
       />
       <user-wishlist-item
         v-for="(item, index) in wishlist"
         :key="index"
         :currentItem="item"
+        @deleteItem="handlerDelete"
       ></user-wishlist-item>
     </div>
     <!-- <el-button @click="test()">test</el-button>
@@ -55,6 +57,15 @@
           content: this.product,
           completed: false,
         })
+        this.product = ''
+      },
+      handlerDelete(id) {
+        this.wishlist.splice(
+          this.wishlist.findIndex((item) => {
+            return item.id === id
+          }),
+          1
+        )
       },
     },
   }
