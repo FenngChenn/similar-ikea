@@ -66,11 +66,13 @@
     methods: {
       submitForm(formName) {
         // console.log(JSON.parse(this.$localStorage.get('users')))
+        let isExist = false
         this.$refs[formName].validate((valid) => {
           if (valid) {
             let path = ''
             let users = JSON.parse(this.$localStorage.get('users'))
             if (users) {
+              console.log(users)
               for (let user of users) {
                 if (this.loginForm.name === user.name) {
                   if (this.loginForm.pass === user.pass) {
@@ -79,6 +81,7 @@
                       JSON.stringify(this.loginForm)
                     )
                     path = '/user/' + this.loginForm.name
+                    isExist = true
                     break
                   } else {
                     this.$message.error({
@@ -86,30 +89,32 @@
                       center: true,
                     })
                   }
-                } else {
-                  this.$confirm('此账号不存在！是否创建？', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning',
-                  })
-                    .then(() => {
-                      console.log('success')
-                      this.$router.push('/register')
-                    })
-                    .catch(() => {
-                      this.$router.push('/')
-                    })
                 }
+              }
+              if (!isExist) {
+                this.$confirm('此账号不存在！是否创建？', '提示', {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                  type: 'warning',
+                })
+                  .then(() => {
+                    console.log('success')
+                    this.$router.push('/register')
+                  })
+                  .catch(() => {
+                    this.$router.push('/')
+                  })
+              } else {
+                this.$router.push({
+                  path: path,
+                })
               }
             } else {
               this.$message({
-                message: '无用户存在！',
+                message: '无注册用户存在！请去注册！',
                 type: 'warning',
               })
             }
-            this.$router.push({
-              path: path,
-            })
           } else {
             console.log('error submit')
             return false

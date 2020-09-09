@@ -101,7 +101,11 @@
             // 把新数据再放回localStorage中
             this.$localStorage.set('users', JSON.stringify(users))
             this.$localStorage.set('currentUser', JSON.stringify(user))
-            console.log(JSON.parse(this.$localStorage.get('currentUser')))
+            console.log('所有用户', JSON.parse(this.$localStorage.get('users')))
+            console.log(
+              '当前用户',
+              JSON.parse(this.$localStorage.get('currentUser'))
+            )
             this.$router.push({
               path: '/user/' + this.registerForm.name,
             })

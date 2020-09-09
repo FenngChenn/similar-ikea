@@ -26,16 +26,21 @@
         list: [],
       }
     },
+    created() {
+      this.$storage.set('test', this.currentUser)
+      const data = this.$storage.get('test')
+      // console.log(data)
+    },
     mounted() {
       setTimeout(() => {
         this.loading = false
       }, 800)
       // console.log('当前用户是：', typeof(this.currentUser))
-      console.log(this.$route.params)
+      // console.log(this.$route.params)
     },
     beforeRouteLeave(to, from, next) {
       this.wishlist.push('bed')
-      console.log(this.wishlist)
+      // console.log(this.wishlist)
       next()
     },
     methods: {
