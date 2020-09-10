@@ -28,6 +28,10 @@ Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios
 
+//vue-image-loader
+import VueImageLoader from '@kevindesousa/vue-image-loader'
+Vue.use(VueImageLoader)
+
 
 router.beforeEach((to, from, next) => {
   // console.log('上一个页面', from)

@@ -3,6 +3,14 @@
   <div id="home">
     <!-- <scroll class="content-scroll" ref="scroll" :probe-type="3"> -->
     <search-bar />
+    <!-- <img
+      src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?fit=crop&crop=entropy&w=3456&h=2304"
+    />-->
+    <image-loader
+      src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?fit=crop&crop=entropy&w=3456&h=2304"
+      width="864px"
+      height="476px"
+    />
     <h1>{{title1}}</h1>
     <carousel :carouselImg="carouselImg" />
     <div class="order">
