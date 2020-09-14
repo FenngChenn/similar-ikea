@@ -3,14 +3,18 @@
   <div id="home">
     <!-- <scroll class="content-scroll" ref="scroll" :probe-type="3"> -->
     <search-bar />
-    <!-- <img
-      src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?fit=crop&crop=entropy&w=3456&h=2304"
-    />-->
-    <image-loader
+    <!-- <image-loader
       src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?fit=crop&crop=entropy&w=3456&h=2304"
       width="864px"
       height="476px"
-    />
+    />-->
+    <div class="player">
+      <video-player
+        class="vjs-custom-skin"
+        ref="videoPlayer"
+        :options="playerOptions"
+      ></video-player>
+    </div>
     <h1>{{title1}}</h1>
     <carousel :carouselImg="carouselImg" />
     <div class="order">
@@ -65,6 +69,19 @@
     name: 'Home',
     data() {
       return {
+        playerOptions: {
+          height: '360',
+          autoplay: true,
+          muted: false,
+          language: 'en',
+          sources: [
+            {
+              type: 'video/mp4',
+              src: 'http://vjs.zencdn.net/v/oceans.mp4',
+            },
+          ],
+          poster: require('assets/img/1.jpg'),
+        },
         title1: '你的家，听你的',
         title2: '迎接春天，发现家的心意',
         carouselImg: [

@@ -32,6 +32,13 @@ Vue.prototype.$axios = axios
 import VueImageLoader from '@kevindesousa/vue-image-loader'
 Vue.use(VueImageLoader)
 
+import VueVideoPlayer from 'vue-video-player'
+import 'video.js/dist/video-js.css'
+
+Vue.use(VueVideoPlayer, {
+
+})
+
 
 router.beforeEach((to, from, next) => {
   // console.log('上一个页面', from)
