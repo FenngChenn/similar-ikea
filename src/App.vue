@@ -14,7 +14,7 @@
       HomeNav,
     },
     mounted() {
-      localStorage.clear()
+      // localStorage.clear()
       // let user = [{name: 'admin', pass: '123'}];
       // this.$localStorage.set('users', JSON.stringify(user))
       // this.$localStorage.remove('users')

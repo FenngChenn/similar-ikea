@@ -1,13 +1,17 @@
 <!-- 主页中不动地方的导航栏 -->
 <template>
   <nav-bar>
-    <img
-      class="logo"
-      slot="left"
-      src="@/assets/img/ikea-logo.svg"
-      alt
-      @click="toHome"
-    />
+    <div slot="left" class="logo-area">
+      <el-drawer title="我是标题" :visible.sync="drawer" :direction="direction">
+        <span>我来啦</span>
+      </el-drawer>
+      <div class="menu" @click="drawer = true">
+        <img src="@/assets/img/menu.svg" alt title="菜单" />
+      </div>
+      <div class="logo" @click="toHome">
+        <img src="@/assets/img/ikea-logo.svg" alt />
+      </div>
+    </div>
     <div slot="center">
       <div class="detail-nav">
         <!-- <div class="nav-item" v-for="(item, index) in navContent" :key="index">
@@ -140,6 +144,9 @@
         ],
         activeIndex: '1',
         currentUser: JSON.parse(this.$localStorage.get('currentUser')),
+        drawer: false,
+        direction: 'ltr',
+        input: '',
       }
     },
     computed: {
@@ -185,15 +192,42 @@
   }
 </script>
 <style lang="stylus" scoped>
-  .logo
-    cursor: pointer
+  .logo-area
+    display: flex
+    height: 100%
+    margin-right: (1 / $r) * 50
+
+    .menu
+      height: 100%
+      width: (1 / $r) * 80
+      margin-right: (1 / $r) * 10
+      position: relative
+      cursor: pointer
+      background-color: #fff
+      display: none
+      border-radius: 50%
+      transition-property: background-color
+      transition-duration: 0.4s
+      transition-timing-function: cubic-bezier(0.4, 0, 0, 1)
+
+      &:hover
+        background-color: #E5E5E5
+
+      img
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+
+    img
+      cursor: pointer
 
   .detail-nav
     display: flex
     padding-right: (1 / $r) * 120
 
-  .detail-nav div
-    flex: 1
+    div
+      flex: 1
 
   .nav-item
     font-weight: 700
@@ -202,20 +236,24 @@
     display: flex
     height: 100%
 
-  .icon-area div
-    flex: 1
-    cursor: pointer
-    position: relative
-    border-radius: 80%
+  .icon-area
+    div
+      flex: 1
+      cursor: pointer
+      position: relative
+      border-radius: 80%
+      transition-property: background-color
+      transition-duration: 0.3s
+      transition-timing-function: cubic-bezier(0.4, 0, 0, 1)
 
-  .icon-area div:hover
-    background-color: #eee
+      &:hover
+        background-color: #E5E5E5
 
-  .icon-area div img
-    position: absolute
-    left: 50%
-    top: 50%
-    transform: translate(-50%, -50%)
+      img
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
 
   .el-dropdown
     font-weight: 700
@@ -228,4 +266,7 @@
   @media only screen and (max-width: 1009px)
     .detail-nav
       display: none
+
+    .logo-area .menu
+      display: block
 </style>

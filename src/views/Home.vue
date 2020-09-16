@@ -13,6 +13,7 @@
         class="vjs-custom-skin"
         ref="videoPlayer"
         :options="playerOptions"
+        @play="onPlayVideo($event)"
       ></video-player>
     </div>
     <h1>{{title1}}</h1>
@@ -65,22 +66,32 @@
 
   import HomeFlex from '@/components/content/home/HomeFlex'
 
+  import introduceVideo from '@/assets/video/burning.mp4'
+
   export default {
     name: 'Home',
     data() {
       return {
         playerOptions: {
-          height: '360',
-          autoplay: true,
-          muted: false,
-          language: 'en',
+          height: '360', // 播放区域的高度
+          autoplay: false, // 是否自动播放
+          muted: false, // 默认消除任何音频声音
+          loop: true, // 是否循环播放
+          language: 'en', // 语言
+          playbackRates: [0.7, 1.0, 1.5, 2.0], // 播放速率
+          // 播放地址
           sources: [
             {
               type: 'video/mp4',
-              src: 'http://vjs.zencdn.net/v/oceans.mp4',
+              // src: 'http://vjs.zencdn.net/v/oceans.mp4',
+              src: introduceVideo,
             },
           ],
-          poster: require('assets/img/1.jpg'),
+          poster: require('assets/img/1.jpg'), // 视频封面图片
+          notSupportedMessage: '此视频暂时无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的提示
+          controlBar: {
+            timeDivider: true,
+          },
         },
         title1: '你的家，听你的',
         title2: '迎接春天，发现家的心意',
@@ -152,9 +163,18 @@
       HomeFlex,
       DivToBtn,
     },
+    computed: {
+      // 必须要有这段代码
+      player() {
+        return this.$refs.videoPlayer.player
+      },
+    },
     methods: {
       toRooms(id) {
         this.$router.push('/' + id)
+      },
+      onPlayVideo(player) {
+        console.log(player)
       },
     },
   }
@@ -171,6 +191,9 @@
     h1
       font-size: (1 / $r) * 59
       margin: (1 / $r) * 30 0
+
+    .player
+      width: (1 / $r) * 1000
 
   .content-scroll
     height: calc(100% - (1 / $r) * 81 - (1 / $r) * 88.3)

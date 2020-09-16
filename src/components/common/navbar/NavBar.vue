@@ -29,7 +29,6 @@
     padding: 0 (1 / $r) * 30
 
   .left
-    width: (1 / $r) * 200
     /* padding-top: 1rem; */
     /* background-color: #666; */
 
