@@ -2,9 +2,27 @@
 <template>
   <nav-bar>
     <div slot="left" class="logo-area">
-      <el-drawer title="我是标题" :visible.sync="drawer" :direction="direction">
-        <span>我来啦</span>
+      <!-- 侧边抽屉代码start -->
+      <el-drawer
+        :with-header="false"
+        :visible.sync="drawer"
+        :direction="direction"
+      >
+        <el-collapse v-model="activeName" accordion>
+          <el-collapse-item
+            v-for="item in collapseMessage"
+            :key="item.id"
+            :title="item.name"
+          >
+            <collapse-info v-for="(itemson, key) in item.son" :key="key">
+              <template v-slot:content>
+                <span>{{itemson}}</span>
+              </template>
+            </collapse-info>
+          </el-collapse-item>
+        </el-collapse>
       </el-drawer>
+      <!-- 侧边抽屉代码end -->
       <div class="menu" @click="drawer = true">
         <img src="@/assets/img/menu.svg" alt title="菜单" />
       </div>
@@ -66,11 +84,14 @@
   // import NavBar from '@/components/common/navbar/NavBar'
   // 组件懒加载
   const NavBar = () => import('@/components/common/navbar/NavBar')
+  const HomeCollapseInfo = () =>
+    import('@/components/content/home/HomeCollapseInfo')
 
   export default {
     name: 'HomeNav',
     components: {
       'nav-bar': NavBar,
+      'collapse-info': HomeCollapseInfo,
     },
     data() {
       return {
@@ -146,7 +167,30 @@
         currentUser: JSON.parse(this.$localStorage.get('currentUser')),
         drawer: false,
         direction: 'ltr',
-        input: '',
+        activeName: '1',
+        collapseMessage: [
+          {
+            id: 1,
+            name: '活动',
+            son: ['9月特惠', '每月会员特惠', '更低价格', '优选低价产品'],
+          },
+          {
+            id: 2,
+            name: '房间',
+            son: [
+              '卧室',
+              '客厅',
+              '厨房',
+              '餐厅',
+              '儿童房',
+              '浴室',
+              '书房和办公室',
+              '门厅',
+              '户外',
+              '阳台',
+            ],
+          },
+        ],
       }
     },
     computed: {
