@@ -10,13 +10,18 @@
       >
         <el-collapse v-model="activeName" accordion>
           <el-collapse-item
+            class="collapse"
             v-for="item in collapseMessage"
             :key="item.id"
             :title="item.name"
           >
-            <collapse-info v-for="(itemson, key) in item.son" :key="key">
+            <collapse-info
+              v-for="(itemson, key) in item.son"
+              :key="key"
+              @itemClick="handleItemClick(itemson.num)"
+            >
               <template v-slot:content>
-                <span>{{itemson}}</span>
+                <span>{{itemson.title}}</span>
               </template>
             </collapse-info>
           </el-collapse-item>
@@ -172,22 +177,27 @@
           {
             id: 1,
             name: '活动',
-            son: ['9月特惠', '每月会员特惠', '更低价格', '优选低价产品'],
+            son: [
+              { num: 0, title: '9月特惠' },
+              { num: 1, title: '每月会员特惠' },
+              { num: 2, title: '更低价格' },
+              { num: 3, title: '优选低价产品' },
+            ],
           },
           {
             id: 2,
             name: '房间',
             son: [
-              '卧室',
-              '客厅',
-              '厨房',
-              '餐厅',
-              '儿童房',
-              '浴室',
-              '书房和办公室',
-              '门厅',
-              '户外',
-              '阳台',
+              { num: 0, title: '卧室' },
+              { num: 1, title: '客厅' },
+              { num: 2, title: '厨房' },
+              { num: 3, title: '餐厅' },
+              { num: 4, title: '儿童房' },
+              { num: 5, title: '浴室' },
+              { num: 6, title: '书房和办公室' },
+              { num: 7, title: '门厅' },
+              { num: 8, title: '户外' },
+              { num: 9, title: '阳台' },
             ],
           },
         ],
@@ -232,10 +242,23 @@
           path: redirect,
         })
       },
+      handleItemClick(num) {
+        console.log(num)
+      },
     },
   }
 </script>
-<style lang="stylus" scoped>
+<style lang="stylus">
+  .collapse
+    padding-left: (1 / $r) * 20
+
+  .el-collapse-item__header
+    font-size: (1 / $r) * 33
+    font-weight: 600
+
+  .collapse-item:last-child
+    border-bottom: 1px solid #e5e5e5
+
   .logo-area
     display: flex
     height: 100%
