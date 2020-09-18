@@ -1,88 +1,95 @@
 <!-- 主页中不动地方的导航栏 -->
 <template>
-  <nav-bar>
-    <div slot="left" class="logo-area">
-      <!-- 侧边抽屉代码start -->
-      <el-drawer
-        :with-header="false"
-        :visible.sync="drawer"
-        :direction="direction"
-      >
-        <el-collapse v-model="activeName" accordion>
-          <el-collapse-item
-            class="collapse"
-            v-for="item in collapseMessage"
-            :key="item.id"
-            :title="item.name"
-          >
-            <collapse-info
-              v-for="(itemson, key) in item.son"
-              :key="key"
-              @itemClick="handleItemClick(itemson.num)"
+  <div>
+    <nav-bar>
+      <div slot="left" class="logo-area">
+        <!-- 侧边抽屉代码start -->
+        <el-drawer
+          :with-header="false"
+          :visible.sync="drawer"
+          :direction="direction"
+        >
+          <el-collapse v-model="activeName" accordion>
+            <el-collapse-item
+              class="collapse"
+              v-for="item in collapseMessage"
+              :key="item.id"
+              :title="item.name"
             >
-              <template v-slot:content>
-                <span>{{itemson.title}}</span>
-              </template>
-            </collapse-info>
-          </el-collapse-item>
-        </el-collapse>
-      </el-drawer>
-      <!-- 侧边抽屉代码end -->
-      <div class="menu" @click="drawer = true">
-        <img src="@/assets/img/menu.svg" alt title="菜单" />
+              <collapse-info
+                v-for="(itemson, key) in item.son"
+                :key="key"
+                @itemClick="handleItemClick(itemson.num)"
+              >
+                <template v-slot:content>
+                  <span>{{itemson.title}}</span>
+                </template>
+              </collapse-info>
+            </el-collapse-item>
+          </el-collapse>
+        </el-drawer>
+        <!-- 侧边抽屉代码end -->
+        <div class="menu" @click="drawer = true">
+          <img src="@/assets/img/menu.svg" alt title="菜单" />
+        </div>
+        <div class="logo" @click="toHome">
+          <img src="@/assets/img/ikea-logo.svg" alt />
+        </div>
       </div>
-      <div class="logo" @click="toHome">
-        <img src="@/assets/img/ikea-logo.svg" alt />
-      </div>
-    </div>
-    <div slot="center">
-      <div class="detail-nav">
-        <!-- <div class="nav-item" v-for="(item, index) in navContent" :key="index">
-          {{item}}
-        </div>-->
-        <!-- <el-menu class="el-menu-demo" mode="horizontal" :default-active="activeIndex" @select="handleSelect">
-          <el-menu-item v-for="(item, index) in navContent" :key="index" :index="(index+1).toString()">
+      <div slot="center">
+        <div class="detail-nav">
+          <!-- <div class="nav-item" v-for="(item, index) in navContent" :key="index">
             {{item}}
-          </el-menu-item>
-        </el-menu>-->
-        <el-row :class="colSpace">
-          <el-col :span="span" v-for="(item, index) in navContent" :key="index">
-            <el-dropdown trigger="click">
-              <span class="el-dropdown-link">
-                {{item.title}}
-                <i
-                  v-show="item.isIcon"
-                  class="el-icon-arrow-down el-icon--right"
-                ></i>
-              </span>
-              <!-- v-if="item.drop.length === 0" -->
-              <el-dropdown-menu>
-                <el-dropdown-item
-                  v-for="sonItem in item.drop"
-                  :key="sonItem.id"
-                  @click.native="toDetail(sonItem.id)"
-                >
-                  <!-- <router-link to="/tehui">{{sonItem}}</router-link> -->
-                  {{sonItem.name}}
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </el-col>
-        </el-row>
+          </div>-->
+          <!-- <el-menu class="el-menu-demo" mode="horizontal" :default-active="activeIndex" @select="handleSelect">
+            <el-menu-item v-for="(item, index) in navContent" :key="index" :index="(index+1).toString()">
+              {{item}}
+            </el-menu-item>
+          </el-menu>-->
+          <el-row :class="colSpace">
+            <el-col
+              :span="span"
+              v-for="(item, index) in navContent"
+              :key="index"
+            >
+              <el-dropdown trigger="click">
+                <span class="el-dropdown-link">
+                  {{item.title}}
+                  <i
+                    v-show="item.isIcon"
+                    class="el-icon-arrow-down el-icon--right"
+                  ></i>
+                </span>
+                <!-- v-if="item.drop.length === 0" -->
+                <el-dropdown-menu>
+                  <el-dropdown-item
+                    v-for="sonItem in item.drop"
+                    :key="sonItem.id"
+                    @click.native="toDetail(sonItem.id)"
+                  >
+                    <!-- <router-link to="/tehui">{{sonItem}}</router-link> -->
+                    {{sonItem.name}}
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </el-col>
+          </el-row>
+        </div>
       </div>
-    </div>
-    <div slot="right" class="icon-area">
-      <div @click="toUser('user')">
-        <img src="@/assets/img/user.svg" alt title="我的" />
+      <div slot="right" class="icon-area">
+        <div @click="toUser('user')">
+          <img src="@/assets/img/user.svg" alt title="我的" />
+        </div>
+        <div @click="toUser('wish')">
+          <img src="@/assets/img/wish.svg" alt title="心愿单" />
+        </div>
+        <div @click="toUser('shop')">
+          <img src="@/assets/img/shopbag.svg" alt title="购物袋" />
+        </div>
       </div>
-      <div @click="toUser('wish')">
-        <img src="@/assets/img/wish.svg" alt title="心愿单" />
-      </div>
-      <div @click="toUser('shop')">
-        <img src="@/assets/img/shopbag.svg" alt title="购物袋" />
-      </div>
-    </div>
-  </nav-bar>
+    </nav-bar>
+    <tool-bar></tool-bar>
+  </div>
 </template>
 
 <script>
@@ -92,11 +99,14 @@
   const HomeCollapseInfo = () =>
     import('@/components/content/home/HomeCollapseInfo')
 
+  const Toolbar = () => import('@/components/common/toolbar/Toolbar')
+
   export default {
     name: 'HomeNav',
     components: {
       'nav-bar': NavBar,
       'collapse-info': HomeCollapseInfo,
+      'tool-bar': Toolbar,
     },
     data() {
       return {
