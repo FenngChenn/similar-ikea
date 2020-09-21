@@ -8,14 +8,14 @@
       width="864px"
       height="476px"
     />-->
-    <div class="player">
+    <!-- <div class="player">
       <video-player
         class="vjs-custom-skin"
         ref="videoPlayer"
         :options="playerOptions"
         @play="onPlayVideo($event)"
       ></video-player>
-    </div>
+    </div>-->
     <h1>{{title1}}</h1>
     <carousel :carouselImg="carouselImg" />
     <div class="order">

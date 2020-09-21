@@ -16,6 +16,8 @@ const UserLogin = () => import(/* webpackChunkName: "UserLogin" */'../views/user
 const UserInfo = () => import(/* webpackChunkName: "UserInfo" */'../views/user/UserInfo')
 const UserWishlist = () => import(/* webpackChunkName: "UserWishlist" */'../views/user/UserWishlist')
 const UserShopbag = () => import(/* webpackChunkName: "UserShopbag" */'../views/user/UserShopbag')
+const CustomerServiceHome = () => import(/* webpackChunkName: "CustomerServiceHome" */'../views/customer/CustomerServiceHome')
+const CustomerDelivery = () => import(/* webpackChunkName: "CustomerDelivery" */'../views/customer/CustomerDelivery')
 
 const routes = [
   {
@@ -59,6 +61,20 @@ const routes = [
         name: 'shopbag',
         component: UserShopbag,
         meta: { requireAuth: true }
+      }
+    ]
+  },
+  {
+    path: 'customer-service',
+    name: 'customerService',
+    component: CustomerServiceHome,
+    meta: { requireAuth: false },
+    children: [
+      {
+        path: 'delivery',
+        name: 'delivery',
+        component: CustomerDelivery,
+        meta: { requireAuth: false }
       }
     ]
   }
