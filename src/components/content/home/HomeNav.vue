@@ -88,7 +88,21 @@
         </div>
       </div>
     </nav-bar>
-    <tool-bar></tool-bar>
+    <tool-bar>
+      <template v-slot:delivery>
+        <img src="@/assets/img/whitecar.svg" alt />
+        <span @click="jumpToService('delivery')">送货服务</span>
+        <!-- <router-link :to="{name: 'delivery'}">送货服务</router-link> -->
+      </template>
+      <template v-slot:assemble>
+        <img src="@/assets/img/worker.svg" alt />
+        <span @click="jumpToService('assemble')">组装服务</span>
+      </template>
+      <template v-slot:return>
+        <img src="@/assets/img/exchange.svg" alt />
+        <span @click="jumpToService('return')">退换货政策</span>
+      </template>
+    </tool-bar>
   </div>
 </template>
 
@@ -254,6 +268,12 @@
       },
       handleItemClick(num) {
         console.log(num)
+      },
+      jumpToService(id) {
+        let desUrl = this.$router.resolve({
+          path: '/customerService/' + id,
+        })
+        window.open(desUrl.href, '_blank')
       },
     },
   }

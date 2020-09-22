@@ -1,13 +1,16 @@
 <template>
   <div class="toolbar">
     <div class="bar-item">
-      <slot name="delivery"></slot>
+      <img src="@/assets/img/whitecar.svg" alt />
+      <span @click="jumpToService('delivery')">送货服务</span>
     </div>
     <div class="bar-item">
-      <slot name="assemble"></slot>
+      <img src="@/assets/img/worker.svg" alt />
+      <span @click="jumpToService('assemble')">组装服务</span>
     </div>
     <div class="bar-item">
-      <slot name="return"></slot>
+      <img src="@/assets/img/exchange.svg" alt />
+      <span @click="jumpToService('return')">退换货政策</span>
     </div>
   </div>
 </template>
@@ -15,6 +18,13 @@
 <script>
   export default {
     name: 'Toolbar',
+    methods: {
+      jumpToService(id) {
+        this.$router.push({
+          path: '/customerService/' + id,
+        })
+      },
+    },
   }
 </script>
 
