@@ -12,6 +12,7 @@ module.exports = {
     Object.assign(config, {
       resolve: {
         alias: {
+          "project": path.resolve(__dirname, '.'),
           "@": path.resolve(__dirname, './src'),
           "assets": path.resolve(__dirname, './src/assets')
         },
