@@ -34,4 +34,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   })
   window.open(desUrl.href, '_blank')
   ```
-* 
+* axios读取本地项目中的json文件数据  
+  利用npm安装完axios之后，在main.js中引入，并且可以让它在全局中使用，Vue.prorotype.$axios = axios
+  在组件中使用：this.$axios.get('')，引号中路径的根路径是根据vue-cli版本不同而不同，3之前是static，从3开始是public文件夹，直接将json文件放在public文件夹下即可获取json数据了

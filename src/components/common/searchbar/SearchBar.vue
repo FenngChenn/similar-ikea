@@ -1,14 +1,15 @@
-<!--:fetch-suggestions="querySearchAsync"  -->
+<!--  -->
 <template>
   <div class="search-bar">
-    <el-form ref="form" :model="form">
+    <el-form ref="form">
       <el-form-item>
-        <el-input
-          v-model="form.name"
+        <el-autocomplete
+          v-model="content"
           placeholder="请输入名称"
           prefix-icon="el-icon-search"
+          :fetch-suggestions="querySearchAsync"
           clearable
-        ></el-input>
+        ></el-autocomplete>
       </el-form-item>
     </el-form>
   </div>
@@ -19,21 +20,38 @@
     name: 'SearchBar',
     data() {
       return {
-        form: {
-          name: '',
-        },
+        content: '',
         goods: [],
+        timeout: null,
       }
     },
     mounted() {
-      this.goods = this.getData()
-      console.log(this.goods)
+      this.$axios
+        .get('/static/goods.json')
+        .then((res) => {
+          this.goods = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     methods: {
-      getData() {
-        this.$axios.get('../../static/goods.json').then((res) => {
-          return 'bbb'
-        })
+      querySearchAsync(queryString, cb) {
+        console.log(queryString)
+        let goods = this.goods
+        console.log(goods[0])
+        let results = queryString ? goods.filter(this.inputFilter) : goods
+
+        clearTimeout(this.timeout)
+        this.timeout = setTimeout(() => {
+          cb(results)
+        }, 3000 * Math.random())
+      },
+      inputFilter(good) {
+        return good
+        // return (good) => {
+        //   return good.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+        // }
       },
     },
   }
