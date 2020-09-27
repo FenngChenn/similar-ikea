@@ -35,5 +35,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   window.open(desUrl.href, '_blank')
   ```
 * axios读取本地项目中的json文件数据  
-  利用npm安装完axios之后，在main.js中引入，并且可以让它在全局中使用，Vue.prorotype.$axios = axios
+  利用npm安装完axios之后，在main.js中引入，并且可以让它在全局中使用，Vue.prorotype.\$axios = axios，
   在组件中使用：this.$axios.get('')，引号中路径的根路径是根据vue-cli版本不同而不同，3之前是static，从3开始是public文件夹，直接将json文件放在public文件夹下即可获取json数据了
+* Vue中带有__ob__: Observer的数组无法遍历
+  如果不是push进数组的话，就不会出现__ob__: Observer。这个属性是vue给数据添加的监控器，不能强制删掉，那么就失去使用vue的作用啦...
+  可以通过将vm.$data传入JSON.parse(JSON.stringify(...))得到深拷贝的原始数据对象
