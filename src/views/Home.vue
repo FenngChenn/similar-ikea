@@ -16,7 +16,7 @@
         @play="onPlayVideo($event)"
       ></video-player>
     </div>-->
-    <h1>{{title1}}</h1>
+    <h1>{{ title1 }}</h1>
     <carousel :carouselImg="carouselImg" />
     <div class="order">
       <div class="image-content" v-for="item in gifImg" :key="item">
@@ -25,32 +25,17 @@
       </div>
     </div>
     <div id="title">
-      <h2>{{title2}}</h2>
+      <h2>{{ title2 }}</h2>
     </div>
     <home-flex>
       <template v-slot:left>
-        <img
-          v-for="item in roomsImg1"
-          :key="item.id"
-          :src="item.ref"
-          @click="toRooms(item.id)"
-        />
+        <img v-for="item in roomsImg1" :key="item.id" :src="item.ref" @click="toRooms(item.id)" />
       </template>
       <template v-slot:center>
-        <img
-          v-for="item in roomsImg2"
-          :key="item.id"
-          :src="item.ref"
-          @click="toRooms(item.id)"
-        />
+        <img v-for="item in roomsImg2" :key="item.id" :src="item.ref" @click="toRooms(item.id)" />
       </template>
       <template v-slot:right>
-        <img
-          v-for="item in roomsImg3"
-          :key="item.id"
-          :src="item.ref"
-          @click="toRooms(item.id)"
-        />
+        <img v-for="item in roomsImg3" :key="item.id" :src="item.ref" @click="toRooms(item.id)" />
       </template>
     </home-flex>
     <div-to-btn :btnText="btnText2" />
@@ -209,11 +194,11 @@
     margin: 0 auto
     display: flex
     justify-content: space-evenly
-    padding-bottom: (1 / $r) * 147
+    padding-bottom: (1 / $r) * 100
     border-bottom: 2px solid rgba(154, 154, 154, 0.3)
 
   .image-content
-    flex: 30%
+    flex: 0 0 33.3333%
 
   .image-content img
     width: 100%
