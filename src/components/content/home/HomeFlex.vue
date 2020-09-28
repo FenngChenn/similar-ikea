@@ -33,4 +33,8 @@
     width: 100%
     margin-bottom: (1 / $r) * 24
     cursor: pointer
+    transition: all 0.4s
+
+    &:hover
+      transform: scale(1.02)
 </style>

@@ -8,6 +8,7 @@
         :fetch-suggestions="querySearchAsync"
         placeholder="请输入内容"
         prefix-icon="el-icon-search"
+        @select="handleSelect"
         clearable
       ></el-autocomplete>
     </el-form>
@@ -45,6 +46,9 @@
           )
         }
         callback(goodsArr)
+      },
+      handleSelect(item) {
+        console.log(item)
       },
     },
   }

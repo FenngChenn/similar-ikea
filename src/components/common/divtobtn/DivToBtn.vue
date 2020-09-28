@@ -2,7 +2,7 @@
 <template>
   <div class="btn-content">
     <span>
-      {{btnText}}
+      {{ btnText }}
       <i class="el-icon-arrow-right el-icon--right"></i>
     </span>
   </div>
@@ -32,8 +32,14 @@
     font-size: (1 / $r) * 26
     cursor: pointer
 
-  .btn-content span:hover
-    background-color: #407ab1
-    color: #fff
-    transition: transform 0.25s ease
+    .el-icon--right
+      margin: 0
+
+    &:hover
+      background-color: #407ab1
+      color: #fff
+      transition: all 0.25s ease
+
+      i
+        transform: translate((1 / $r) * 10, 0)
 </style>

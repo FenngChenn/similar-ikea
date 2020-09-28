@@ -40,3 +40,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * Vue中带有__ob__: Observer的数组无法遍历
   如果不是push进数组的话，就不会出现__ob__: Observer。这个属性是vue给数据添加的监控器，不能强制删掉，那么就失去使用vue的作用啦...
   可以通过将vm.$data传入JSON.parse(JSON.stringify(...))得到深拷贝的原始数据对象
+* element-ui组件中的\<el-autocomplete>标签想要展示的数据可以为后台获取的一组数组，数组中的每一个对象必须有一个键名为value的值，因为autocomplete只识别value字段，并在下拉列表中显示
+* 如果一个页面中有多个\<el-autocomplete>组件，那么使用:fetch-suggestions以及@select属性时，js就区分不出来是哪个被触发了，原写法： :fetch-suggestions="querySearchAsync", @select="handleSelect(item, index)";   
+  解决：:fetch-suggestions="((queryString, cb) => {queryFun(queryString, cb)})", @select="(item) => {handleSelect(item, index)}"。 实际上运用的是闭包原理!!!!!!
+  
+* **使用element-ui中的el-autocomplete报错**，报错如下：
+在handleChange这个方法中报错，传入的不是event事件，而是输入的字符串。     
+在elementui 2.13.2中已修复：  
+Autocomplete -> Fix change event bug (#19200 by @sxzz)
