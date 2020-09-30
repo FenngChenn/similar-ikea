@@ -37,4 +37,5 @@
 
     &:hover
       transform: scale(1.02)
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4)
 </style>
