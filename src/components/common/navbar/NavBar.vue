@@ -1,6 +1,6 @@
 <!-- 导航栏 -->
 <template>
-  <div id="navbar">
+  <div class="navbar">
     <div class="left">
       <slot name="left"></slot>
     </div>
@@ -19,7 +19,7 @@
   }
 </script>
 <style lang="stylus" scoped>
-  #navbar
+  .navbar
     height: (1 / $r) * 81
     line-height: (1 / $r) * 81
     width: 100%

@@ -4,11 +4,7 @@
     <nav-bar>
       <div slot="left" class="logo-area">
         <!-- 侧边抽屉代码start -->
-        <el-drawer
-          :with-header="false"
-          :visible.sync="drawer"
-          :direction="direction"
-        >
+        <el-drawer :with-header="false" :visible.sync="drawer" :direction="direction">
           <el-collapse v-model="activeName" accordion>
             <el-collapse-item
               class="collapse"
@@ -22,7 +18,7 @@
                 @itemClick="handleItemClick(itemson.num)"
               >
                 <template v-slot:content>
-                  <span>{{itemson.title}}</span>
+                  <span>{{ itemson.title }}</span>
                 </template>
               </collapse-info>
             </el-collapse-item>
@@ -47,18 +43,11 @@
             </el-menu-item>
           </el-menu>-->
           <el-row :class="colSpace">
-            <el-col
-              :span="span"
-              v-for="(item, index) in navContent"
-              :key="index"
-            >
+            <el-col :span="span" v-for="(item, index) in navContent" :key="index">
               <el-dropdown trigger="click">
                 <span class="el-dropdown-link">
-                  {{item.title}}
-                  <i
-                    v-show="item.isIcon"
-                    class="el-icon-arrow-down el-icon--right"
-                  ></i>
+                  {{ item.title }}
+                  <i v-show="item.isIcon" class="el-icon-arrow-down el-icon--right"></i>
                 </span>
                 <!-- v-if="item.drop.length === 0" -->
                 <el-dropdown-menu>
@@ -68,7 +57,7 @@
                     @click.native="toDetail(sonItem.id)"
                   >
                     <!-- <router-link to="/tehui">{{sonItem}}</router-link> -->
-                    {{sonItem.name}}
+                    {{ sonItem.name }}
                   </el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -110,8 +99,7 @@
   // import NavBar from '@/components/common/navbar/NavBar'
   // 组件懒加载
   const NavBar = () => import('@/components/common/navbar/NavBar')
-  const HomeCollapseInfo = () =>
-    import('@/components/content/home/HomeCollapseInfo')
+  const HomeCollapseInfo = () => import('@/components/content/home/HomeCollapseInfo')
 
   const Toolbar = () => import('@/components/common/toolbar/Toolbar')
 
@@ -234,6 +222,66 @@
       span() {
         return 24 / this.navContent.length
       },
+    },
+    mounted() {
+      var navBar = document.querySelector('.navbar')
+      var toolBar = document.querySelector('.toolbar')
+      if (navBar !== null) {
+        var navbarClassName = navBar.getAttribute('class')
+        var toolbarClassName = toolBar.getAttribute('class')
+
+        // 判断元素是否隐藏，ie和Opera不兼容
+        var isHidden = function (element) {
+          return element.offsetParent === null
+        }
+
+        let showNav = function () {
+          if (navBar) {
+            navBar.setAttribute('class', 'navbar')
+            toolBar.setAttribute('class', 'toolbar')
+          }
+        }
+
+        let hideNav = function () {
+          if (navBar) {
+            let navbarHideClass = navbarClassName.concat(' slide_hide')
+            let toolbarHideClass = toolbarClassName.concat(' top')
+            navBar.setAttribute('class', navbarHideClass)
+            toolBar.setAttribute('class', toolbarHideClass)
+          }
+        }
+
+        // 监控鼠标上下滚动
+        var scrollFn = function (e) {
+          e = e || window.event
+          if (e.wheelDelta) {
+            if (e.wheelDelta < 0) {
+              // console.log('向上滚动: ', e.wheelDelta)
+              showNav()
+            }
+            if (e.wheelDelta > 0) {
+              // console.log('向下滚动: ', e.wheelDelta)
+              hideNav()
+            }
+          } else if (e.detail) {
+            if (e.detail > 0) {
+              // console.log('向上滚动: ', e.detail)
+              showNav()
+            }
+            if (e.detail < 0) {
+              // console.log('向下滚动: ', e.detail)
+              hideNav()
+            }
+          }
+        }
+
+        // 给页面绑定滑轮滚动事件
+        if (document.addEventListener) {
+          document.addEventListener('DOMMouseScroll', scrollFn, false)
+        }
+
+        window.onmousewheel = document.onmousewheel = scrollFn
+      }
     },
     methods: {
       toHome() {
