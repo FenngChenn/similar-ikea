@@ -223,66 +223,6 @@
         return 24 / this.navContent.length
       },
     },
-    mounted() {
-      var navBar = document.querySelector('.navbar')
-      var toolBar = document.querySelector('.toolbar')
-      if (navBar !== null) {
-        var navbarClassName = navBar.getAttribute('class')
-        var toolbarClassName = toolBar.getAttribute('class')
-
-        // 判断元素是否隐藏，ie和Opera不兼容
-        var isHidden = function (element) {
-          return element.offsetParent === null
-        }
-
-        let showNav = function () {
-          if (navBar) {
-            navBar.setAttribute('class', 'navbar')
-            toolBar.setAttribute('class', 'toolbar')
-          }
-        }
-
-        let hideNav = function () {
-          if (navBar) {
-            let navbarHideClass = navbarClassName.concat(' slide_hide')
-            let toolbarHideClass = toolbarClassName.concat(' top')
-            navBar.setAttribute('class', navbarHideClass)
-            toolBar.setAttribute('class', toolbarHideClass)
-          }
-        }
-
-        // 监控鼠标上下滚动
-        var scrollFn = function (e) {
-          e = e || window.event
-          if (e.wheelDelta) {
-            if (e.wheelDelta < 0) {
-              // console.log('向上滚动: ', e.wheelDelta)
-              showNav()
-            }
-            if (e.wheelDelta > 0) {
-              // console.log('向下滚动: ', e.wheelDelta)
-              hideNav()
-            }
-          } else if (e.detail) {
-            if (e.detail > 0) {
-              // console.log('向上滚动: ', e.detail)
-              showNav()
-            }
-            if (e.detail < 0) {
-              // console.log('向下滚动: ', e.detail)
-              hideNav()
-            }
-          }
-        }
-
-        // 给页面绑定滑轮滚动事件
-        if (document.addEventListener) {
-          document.addEventListener('DOMMouseScroll', scrollFn, false)
-        }
-
-        window.onmousewheel = document.onmousewheel = scrollFn
-      }
-    },
     methods: {
       toHome() {
         this.$router.push('/')

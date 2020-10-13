@@ -48,3 +48,43 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 在handleChange这个方法中报错，传入的不是event事件，而是输入的字符串。     
 在elementui 2.13.2中已修复：  
 Autocomplete -> Fix change event bug (#19200 by @sxzz)
+
+* indexOf 返回字符串第一次出现的位置，没有就返回-1
+* click事件优先级高于blur
+* flex百分比布局，父：display: flex; 子：flex: 0 0 50% / 0 0 33.3333% / 0 0 25%
+* resize，scroll，hover等js事件触发时绑定的方法会被频繁调用，致使页面产生性能问题，所以我们使用函数节流来解这个决问题   
+  思路：如果事件一直被触发，也只在一定事件间隔才执行一次    
+  ```
+  //scroll方法中当间隔时间大于2s，do somthing执行一次 window.addEventListener('scroll',function(){
+    var timer ;//使用闭包，缓存变量
+    var startTime = new Date();
+    return function(){
+        var curTime = new Date();
+        if(curTime - startTime >= 2000){
+            timer = setTimeout(function(){
+                console.log('do somthing')
+            },500);
+            startTime = curTime;
+        }
+ 
+    }}());
+  ```
+
+  也可以将节流函数封装一下，用es6语法：
+  ```
+
+    /**
+     * 节流函数
+     * @param fn Function 触发事件后需要执行的函数
+     * @param delay String  间隔时间 ms
+     * */
+    delayScrollFunc(fn, delay) {
+      const now = new Date().getTime();
+      if (now - this.lastScrollCall < delay) return;
+      this.lastScrollCall = now;
+ 
+      setTimeout(() => {
+        fn();
+      }, 60); // 在实际项目中，我发现这里再延迟一点时间执行效果更好（针对监听scroll）
+    }
+  ```
