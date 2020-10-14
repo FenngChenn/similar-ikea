@@ -1,6 +1,6 @@
 <!-- 导航栏 -->
 <template>
-  <div class="navbar">
+  <div class="navbar" id="navbar">
     <div class="left">
       <slot name="left"></slot>
     </div>
@@ -25,8 +25,18 @@
     width: 100%
     display: flex
     background-color: #fff
-    margin: (1 / $r) * 30 auto
-    padding: 0 (1 / $r) * 30
+    // margin: (1 / $r) * 30 auto
+    padding: (1 / $r) * 60 (1 / $r) * 30
+    position: fixed
+    top: (1 / $r) * 100
+    left: 0
+    transition: all 0.2s
+    transform: translate3d(0, 0, 0)
+    z-index: 11
+
+  .slide_hide
+    transition: all 0.2s
+    transform: translate3d(0, -(1 / $r) * 100, 0)
 
   .left
     /* padding-top: 1rem; */

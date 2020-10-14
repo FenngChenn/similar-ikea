@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar">
+  <div class="toolbar" id="toolbar">
     <div class="bar-item">
       <slot name="delivery"></slot>
     </div>
@@ -28,6 +28,12 @@
     background-color: black
     color: #fff
     margin-bottom: (1 / $r) * 30
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 12
+    transition: all 0.2s
+    transform: translate3d(0, 0, 0)
 
     .bar-item
       flex: 1
@@ -52,4 +58,8 @@
 
         &:hover
           text-decoration: underline
+
+  .top
+    transition: all 0.2s
+    transform: translate3d(0, -100%, 0)
 </style>

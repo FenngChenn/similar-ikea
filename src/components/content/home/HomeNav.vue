@@ -1,6 +1,21 @@
 <!-- 主页中不动地方的导航栏 -->
 <template>
-  <div>
+  <div id="homenav">
+    <tool-bar>
+      <template v-slot:delivery>
+        <img src="@/assets/img/whitecar.svg" alt />
+        <span @click="jumpToService('delivery')">送货服务</span>
+        <!-- <router-link :to="{name: 'delivery'}">送货服务</router-link> -->
+      </template>
+      <template v-slot:assemble>
+        <img src="@/assets/img/worker.svg" alt />
+        <span @click="jumpToService('assemble')">组装服务</span>
+      </template>
+      <template v-slot:return>
+        <img src="@/assets/img/exchange.svg" alt />
+        <span @click="jumpToService('return')">退换货政策</span>
+      </template>
+    </tool-bar>
     <nav-bar>
       <div slot="left" class="logo-area">
         <!-- 侧边抽屉代码start -->
@@ -77,21 +92,6 @@
         </div>
       </div>
     </nav-bar>
-    <tool-bar>
-      <template v-slot:delivery>
-        <img src="@/assets/img/whitecar.svg" alt />
-        <span @click="jumpToService('delivery')">送货服务</span>
-        <!-- <router-link :to="{name: 'delivery'}">送货服务</router-link> -->
-      </template>
-      <template v-slot:assemble>
-        <img src="@/assets/img/worker.svg" alt />
-        <span @click="jumpToService('assemble')">组装服务</span>
-      </template>
-      <template v-slot:return>
-        <img src="@/assets/img/exchange.svg" alt />
-        <span @click="jumpToService('return')">退换货政策</span>
-      </template>
-    </tool-bar>
   </div>
 </template>
 
@@ -267,6 +267,9 @@
   }
 </script>
 <style lang="stylus">
+  #homenav
+    // height: (1 / $r) * 221
+
   .collapse
     padding-left: (1 / $r) * 20
 
@@ -304,7 +307,7 @@
         left: 50%
         transform: translate(-50%, -50%)
 
-    img
+    .logo
       cursor: pointer
 
   .detail-nav
@@ -352,6 +355,7 @@
     .detail-nav
       display: none
 
-    .logo-area .menu
-      display: block
+    .logo-area
+      .menu
+        display: block
 </style>

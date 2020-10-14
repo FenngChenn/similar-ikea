@@ -17,6 +17,7 @@
       return {
         i: 0,
         lastScrollCall: 0,
+        scrollNum: 0,
       }
     },
     mounted() {
@@ -31,38 +32,18 @@
     },
     methods: {
       delayScrollFunc() {
+        // delay时间为200，如果数值太小会报错
         const now = new Date().getTime()
-        if (now - this.lastScrollCall < 500) return
+        if (now - this.lastScrollCall < 300) return
         this.lastScrollCall = now
 
         var timer = null
         clearTimeout(timer)
         timer = setTimeout(() => {
           this.handleScroll()
-        }, 500)
+        }, 300)
       },
       handleScroll() {
-        // console.log('scroll')
-        // if (navBar !== null && toolBar !== null) {
-        //   var navbarClassName = navBar.getAttribute('class')
-        //   var toolbarClassName = toolBar.getAttribute('class')
-
-        //   let showNav = function () {
-        //     if (navBar) {
-        //       navBar.setAttribute('class', 'navbar')
-        //       toolBar.setAttribute('class', 'toolbar')
-        //     }
-        //   }
-
-        //   let hideNav = function () {
-        //     if (navBar) {
-        //       let navbarHideClass = navbarClassName.concat(' slide_hide')
-        //       let toolbarHideClass = toolbarClassName.concat(' top')
-        //       navBar.setAttribute('class', navbarHideClass)
-        //       toolBar.setAttribute('class', toolbarHideClass)
-        //     }
-        //   }
-
         // 页面滚动距顶部距离
         let scrollTop =
           window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
@@ -71,8 +52,8 @@
         this.i = scrollTop
 
         // 获取子组件
-        var navBar = document.querySelector('.navbar')
-        var toolBar = document.querySelector('.toolbar')
+        var navBar = document.getElementById('navbar')
+        var toolBar = document.getElementById('toolbar')
         if (navBar !== null && toolBar !== null) {
           var navbarClassName = navBar.getAttribute('class')
           var toolbarClassName = toolBar.getAttribute('class')
@@ -82,17 +63,17 @@
           // console.log('up')
           navBar.setAttribute('class', 'navbar')
           toolBar.setAttribute('class', 'toolbar')
-          console.log(navBar.getAttribute('class'))
         } else {
           // console.log('down')
+          var navbarHideClass, toolbarHideClass
           if (navBar) {
-            console.log(navbarClassName)
-            if (navbarClassName.indexOf('slide_hide') === -1) {
-              var navbarHideClass = navbarClassName.concat(' slide_hide')
+            if (navbarClassName.indexOf('slide_hide') > -1) {
+              return
+            } else {
+              navbarHideClass = navbarClassName.concat(' slide_hide')
+              toolbarHideClass = toolbarClassName.concat(' top')
             }
-            if (toolbarClassName.indexOf('top') === -1) {
-              var toolbarHideClass = toolbarClassName.concat(' top')
-            }
+
             navBar.setAttribute('class', navbarHideClass)
             toolBar.setAttribute('class', toolbarHideClass)
           }
