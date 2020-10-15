@@ -26,8 +26,9 @@
     margin: 0 auto
 
   .home-flex div
-    flex: 30%
-    padding-right: (1 / $r) * 30
+    flex: 0 0 33.3333%
+    padding-right: (1 / $r) * 15
+    padding-left: (1 / $r) * 15
 
   .home-flex div img
     width: 100%

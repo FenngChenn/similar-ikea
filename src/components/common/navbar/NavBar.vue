@@ -26,17 +26,17 @@
     display: flex
     background-color: #fff
     // margin: (1 / $r) * 30 auto
-    padding: (1 / $r) * 60 (1 / $r) * 30
+    padding: 0 (1 / $r) * 30
     position: fixed
-    top: (1 / $r) * 100
+    top: (1 / $r) * 80
     left: 0
     transition: all 0.2s
     transform: translate3d(0, 0, 0)
-    z-index: 11
+    // z-index: 11
 
   .slide_hide
     transition: all 0.2s
-    transform: translate3d(0, -(1 / $r) * 100, 0)
+    transform: translate3d(0, -(1 / $r) * 80, 0)
 
   .left
     /* padding-top: 1rem; */

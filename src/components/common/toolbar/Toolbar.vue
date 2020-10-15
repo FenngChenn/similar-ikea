@@ -23,15 +23,15 @@
     display: flex
     justify-content: flex-start
     width: 100%
-    height: (1 / $r) * 100
-    padding: (1 / $r) * 30
+    height: (1 / $r) * 80
+    padding: (1 / $r) * 24
     background-color: black
     color: #fff
-    margin-bottom: (1 / $r) * 30
+    // margin-bottom: (1 / $r) * 24
     position: fixed
     top: 0
     left: 0
-    z-index: 12
+    // z-index: 12
     transition: all 0.2s
     transform: translate3d(0, 0, 0)
 
@@ -45,15 +45,15 @@
         text-align: center
 
       img
-        height: (1 / $r) * 40
-        width: (1 / $r) * 40
+        height: (1 / $r) * 32
+        width: (1 / $r) * 32
         color: #fff
         vertical-align: middle
         cursor: pointer
 
       span
-        font-size: (1 / $r) * 8
-        padding-left: (1 / $r) * 10
+        font-size: (1 / $r) * 6.4
+        padding-left: (1 / $r) * 8
         cursor: pointer
 
         &:hover

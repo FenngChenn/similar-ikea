@@ -1,4 +1,5 @@
 <!-- 主页中不动地方的导航栏 -->
+<!-- :modal-append-to-body="true" -->
 <template>
   <div id="homenav">
     <tool-bar>
@@ -268,7 +269,7 @@
 </script>
 <style lang="stylus">
   #homenav
-    // height: (1 / $r) * 221
+    height: (1 / $r) * 161
 
   .collapse
     padding-left: (1 / $r) * 20
@@ -309,6 +310,7 @@
 
     .logo
       cursor: pointer
+      padding-top: (1 / $r) * 10
 
   .detail-nav
     display: flex
@@ -329,7 +331,7 @@
       flex: 1
       cursor: pointer
       position: relative
-      border-radius: 80%
+      border-radius: 50%
       transition-property: background-color
       transition-duration: 0.3s
       transition-timing-function: cubic-bezier(0.4, 0, 0, 1)
@@ -358,4 +360,7 @@
     .logo-area
       .menu
         display: block
+
+      .logo
+        padding-top: (1 / $r) * 2.5
 </style>

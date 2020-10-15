@@ -171,7 +171,8 @@
     position: relative
     text-align: center
     /* height: 100vh; */
-    padding-bottom: 0.86rem
+    padding: (1 / $r) * 50 0 (1 / $r) * 86 0
+    z-index: -1
 
     h1
       font-size: (1 / $r) * 59
