@@ -32,7 +32,7 @@
     left: 0
     transition: all 0.2s
     transform: translate3d(0, 0, 0)
-    // z-index: 11
+    z-index: 11
 
   .slide_hide
     transition: all 0.2s

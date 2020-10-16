@@ -20,7 +20,13 @@
     <nav-bar>
       <div slot="left" class="logo-area">
         <!-- 侧边抽屉代码start -->
-        <el-drawer :with-header="false" :visible.sync="drawer" :direction="direction">
+        <el-drawer
+          :with-header="false"
+          :visible.sync="drawer"
+          :direction="direction"
+          :modal-append-to-body="false"
+          :append-to-body="true"
+        >
           <el-collapse v-model="activeName" accordion>
             <el-collapse-item
               class="collapse"
@@ -41,8 +47,8 @@
           </el-collapse>
         </el-drawer>
         <!-- 侧边抽屉代码end -->
-        <div class="menu" @click="drawer = true">
-          <img src="@/assets/img/menu.svg" alt title="菜单" />
+        <div class="menu" @click="drawer = true" title="菜单">
+          <img src="@/assets/img/menu.svg" alt />
         </div>
         <div class="logo" @click="toHome">
           <img src="@/assets/img/ikea-logo.svg" alt />

@@ -59,7 +59,7 @@
           var toolbarClassName = toolBar.getAttribute('class')
         }
         // 判断差值，来判断是向上或向下滚动
-        if (scroll < 0) {
+        if (scroll <= 0) {
           // console.log('up')
           navBar.setAttribute('class', 'navbar')
           toolBar.setAttribute('class', 'toolbar')

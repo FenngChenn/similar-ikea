@@ -31,7 +31,7 @@
     position: fixed
     top: 0
     left: 0
-    // z-index: 12
+    z-index: 12
     transition: all 0.2s
     transform: translate3d(0, 0, 0)
 

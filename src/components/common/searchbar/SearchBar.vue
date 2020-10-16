@@ -8,6 +8,7 @@
         :fetch-suggestions="querySearchAsync"
         placeholder="请输入内容"
         prefix-icon="el-icon-search"
+        :popper-append-to-body="false"
         @select="handleSelect"
         clearable
       ></el-autocomplete>
@@ -59,6 +60,7 @@
     margin: 0 auto
     padding: 0 (1 / $r) * 30
     font-size: (1 / $r) * 30
+    z-index: 9
 
     .autocomplete
       width: 100%
