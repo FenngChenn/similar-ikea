@@ -64,4 +64,7 @@
 
     .autocomplete
       width: 100%
+
+  .el-autocomplete-suggestion
+    z-index: 1
 </style>

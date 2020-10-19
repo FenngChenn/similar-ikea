@@ -1,23 +1,28 @@
 <template>
   <div id="app">
     <home-nav></home-nav>
+    <totop-btn v-show="isShow" @click.native="backTopClick"></totop-btn>
     <router-view />
   </div>
 </template>
 
 <script>
   import HomeNav from '@/components/content/home/HomeNav'
+  import TotopBtn from '@/components/common/topbtn/TotopBtn'
 
   export default {
     name: 'App',
     components: {
       HomeNav,
+      TotopBtn,
     },
     data() {
       return {
         i: 0,
         lastScrollCall: 0,
         scrollNum: 0,
+        scrollTop: 0,
+        isShow: false,
       }
     },
     mounted() {
@@ -45,11 +50,18 @@
       },
       handleScroll() {
         // 页面滚动距顶部距离
-        let scrollTop =
+        this.scrollTop =
           window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         // 此次滚动的距离和上一次滚动距离的差值
-        let scroll = scrollTop - this.i
-        this.i = scrollTop
+        let scroll = this.scrollTop - this.i
+        this.i = this.scrollTop
+
+        // 显示/隐藏回到顶部按钮
+        if (this.scrollTop - 600 > 0) {
+          this.isShow = true
+        } else {
+          this.isShow = false
+        }
 
         // 获取子组件
         var navBar = document.getElementById('navbar')
@@ -78,6 +90,16 @@
             toolBar.setAttribute('class', toolbarHideClass)
           }
         }
+      },
+      backTopClick() {
+        const that = this
+        let timer = setInterval(() => {
+          let ispeed = Math.floor(-that.scrollTop / 5)
+          document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + ispeed
+          if (that.scrollTop === 0) {
+            clearInterval(timer)
+          }
+        }, 10)
       },
     },
   }
