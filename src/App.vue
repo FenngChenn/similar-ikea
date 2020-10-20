@@ -99,12 +99,11 @@
         var timer = setInterval(() => {
           // 获取元素垂直滚动的像素数
           let heightTop = document.documentElement.scrollTop || document.body.scrollTop
-          console.log('heightTop: ', heightTop)
+          // console.log('heightTop: ', heightTop)
 
           iSpeed = Math.floor((0 - heightTop) / 8) // 当速度小于0时 要向下取整才能够准确的到达目标值
           document.documentElement.scrollTop = document.body.scrollTop = heightTop + iSpeed
           if (heightTop <= 0) {
-            console.log('stop')
             clearInterval(timer)
           }
         }, 30)

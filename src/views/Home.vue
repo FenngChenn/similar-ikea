@@ -172,6 +172,7 @@
     text-align: center
     /* height: 100vh; */
     padding: (1 / $r) * 50 0 (1 / $r) * 86 0
+    z-index: 1
 
     h1
       font-size: (1 / $r) * 59

@@ -276,6 +276,7 @@
 <style lang="stylus">
   #homenav
     height: (1 / $r) * 161
+    z-index: 2
 
   .collapse
     padding-left: (1 / $r) * 20
