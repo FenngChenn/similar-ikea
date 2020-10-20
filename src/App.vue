@@ -92,14 +92,22 @@
         }
       },
       backTopClick() {
-        const that = this
-        let timer = setInterval(() => {
-          let ispeed = Math.floor(-that.scrollTop / 5)
-          document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + ispeed
-          if (that.scrollTop === 0) {
+        // 元素可视区高度
+        let viewHeight = document.documentElement.clientHeight
+
+        var iSpeed = 0
+        var timer = setInterval(() => {
+          // 获取元素垂直滚动的像素数
+          let heightTop = document.documentElement.scrollTop || document.body.scrollTop
+          console.log('heightTop: ', heightTop)
+
+          iSpeed = Math.floor((0 - heightTop) / 8) // 当速度小于0时 要向下取整才能够准确的到达目标值
+          document.documentElement.scrollTop = document.body.scrollTop = heightTop + iSpeed
+          if (heightTop <= 0) {
+            console.log('stop')
             clearInterval(timer)
           }
-        }, 10)
+        }, 30)
       },
     },
   }
