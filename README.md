@@ -96,3 +96,44 @@ Autocomplete -> Fix change event bug (#19200 by @sxzz)
 
 * Q：el的输入框组件中el-autocomplete的输入建议提示框部分，z-index在初始css中被设定了很大值，导致鼠标在往下滚动时，提示框会覆盖其他z-index值小的组件，形成bug
   A：既然不能改变组件本身的z-index值，那么我们可以改变他们最外层父组件的值，这样就解决了bug
+
+* Less 
+  &符号有两种意义   
+  1. 父选择符
+  ```
+    .ant-menu {
+      background: #fff;
+      border-bottom: 0;
+
+      .ant-menu-item {
+        color: rgba(0,0,0,0.65);  
+        padding-left:16px;
+        &:hover {
+          color: #235FB8;
+        }
+      }
+      // 父子上下级关系
+      .ant-menu-submenu &{  // 相当于.ant-menu-submenu .ant-menu
+        border-color: #235FB8;
+      }
+    }
+  ```
+
+  2.且
+  ```
+    .ant-menu{
+      background: #fff; 
+      border-bottom:0;
+    
+      .ant-menu-item{
+        color: rgba(0,0,0,0.65);  
+        padding-left:16px; 
+        padding-right:16px;
+      }
+    
+      &.ant-menu-submenu{ //同级关系
+        border-color: #235FB8;
+      }
+    
+    }
+  ```
