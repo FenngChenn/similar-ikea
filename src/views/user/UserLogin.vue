@@ -17,7 +17,7 @@
         <el-input type="password" v-model="loginForm.pass"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+        <el-button type="primary" @click="submitFormByVuex('loginForm')">登录</el-button>
         <el-button @click="resetForm('loginForm')">重置</el-button>
       </el-form-item>
       <el-form-item>
@@ -64,50 +64,42 @@
       }, 800)
     },
     methods: {
-      submitForm(formName) {
-        // console.log(JSON.parse(this.$localStorage.get('users')))
-        let isExist = false
+      submitFormByVuex(formName) {
+        let path = ''
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            let path = ''
-            let users = JSON.parse(this.$localStorage.get('users'))
-            if (users) {
-              console.log(users)
+            let users = this.$store.state.users
+            console.log('注册用户组：', users.length)
+            if (users.length > 0) {
               for (let user of users) {
+                console.log(user.name, user.pass)
                 if (this.loginForm.name === user.name) {
                   if (this.loginForm.pass === user.pass) {
-                    this.$localStorage.set(
-                      'currentUser',
-                      JSON.stringify(this.loginForm)
-                    )
                     path = '/user/' + this.loginForm.name
-                    isExist = true
-                    break
+                    console.log(path)
+                    this.$router.push({
+                      path: path,
+                    })
                   } else {
                     this.$message.error({
                       message: '用户密码输入有误',
                       center: true,
                     })
                   }
+                } else {
+                  this.$confirm('此账号不存在！是否创建？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning',
+                  })
+                    .then(() => {
+                      console.log('success')
+                      this.$router.push('/register')
+                    })
+                    .catch(() => {
+                      this.$router.push('/')
+                    })
                 }
-              }
-              if (!isExist) {
-                this.$confirm('此账号不存在！是否创建？', '提示', {
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消',
-                  type: 'warning',
-                })
-                  .then(() => {
-                    console.log('success')
-                    this.$router.push('/register')
-                  })
-                  .catch(() => {
-                    this.$router.push('/')
-                  })
-              } else {
-                this.$router.push({
-                  path: path,
-                })
               }
             } else {
               this.$message({
@@ -115,12 +107,63 @@
                 type: 'warning',
               })
             }
-          } else {
-            console.log('error submit')
-            return false
           }
         })
       },
+      /*submitForm(formName) {
+          // console.log(JSON.parse(this.$localStorage.get('users')))
+          let isExist = false
+          this.$refs[formName].validate((valid) => {
+            if (valid) {
+              let path = ''
+              let users = JSON.parse(this.$localStorage.get('users'))
+              if (users) {
+                console.log(users)
+                for (let user of users) {
+                  if (this.loginForm.name === user.name) {
+                    if (this.loginForm.pass === user.pass) {
+                      this.$localStorage.set('currentUser', JSON.stringify(this.loginForm))
+                      path = '/user/' + this.loginForm.name
+                      isExist = true
+                      break
+                    } else {
+                      this.$message.error({
+                        message: '用户密码输入有误',
+                        center: true,
+                      })
+                    }
+                  }
+                }
+                if (!isExist) {
+                  this.$confirm('此账号不存在！是否创建？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning',
+                  })
+                    .then(() => {
+                      console.log('success')
+                      this.$router.push('/register')
+                    })
+                    .catch(() => {
+                      this.$router.push('/')
+                    })
+                } else {
+                  this.$router.push({
+                    path: path,
+                  })
+                }
+              } else {
+                this.$message({
+                  message: '无注册用户存在！请去注册！',
+                  type: 'warning',
+                })
+              }
+            } else {
+              console.log('error submit')
+              return false
+            }
+          })
+        },*/
       resetForm(formName) {
         this.$refs[formName].resetFields()
       },

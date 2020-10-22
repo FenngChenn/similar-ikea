@@ -20,7 +20,8 @@
         <el-input type="password" v-model="registerForm.checkPass"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('registerForm')">注册</el-button>
+        <!-- <el-button type="primary" @click="submitForm('registerForm')">注册</el-button> -->
+        <el-button type="primary" @click="submitFormByVuex('registerForm')">注册</el-button>
         <el-button @click="resetForm('registerForm')">重置</el-button>
       </el-form-item>
       <el-form-item>
@@ -81,6 +82,20 @@
       }, 800)
     },
     methods: {
+      submitFormByVuex(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            let user = {}
+            user.name = this.registerForm.name
+            user.pass = this.registerForm.pass
+
+            this.$store.commit('addUser', user)
+            this.$router.push({
+              path: '/user/' + this.registerForm.name,
+            })
+          }
+        })
+      },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
@@ -102,10 +117,7 @@
             this.$localStorage.set('users', JSON.stringify(users))
             this.$localStorage.set('currentUser', JSON.stringify(user))
             console.log('所有用户', JSON.parse(this.$localStorage.get('users')))
-            console.log(
-              '当前用户',
-              JSON.parse(this.$localStorage.get('currentUser'))
-            )
+            console.log('当前用户', JSON.parse(this.$localStorage.get('currentUser')))
             this.$router.push({
               path: '/user/' + this.registerForm.name,
             })
