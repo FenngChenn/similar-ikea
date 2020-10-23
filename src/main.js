@@ -41,13 +41,11 @@ Vue.use(VueVideoPlayer, {
 
 
 router.beforeEach((to, from, next) => {
-  // console.log('上一个页面', from)
-  // console.log('下一个页面', to)
+  // 使用vue-localStorage
+  // let currentUser = Vue.localStorage.get('currentUser')
 
-
-
-  let currentUser = Vue.localStorage.get('currentUser')
-  // console.log('当前用户是：', currentUser)
+  // 使用Vuex
+  let currentUser = store.state.currentUser
 
   if (to.meta.requireAuth) {
     if (currentUser !== null) {

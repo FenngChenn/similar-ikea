@@ -90,6 +90,7 @@
             user.pass = this.registerForm.pass
 
             this.$store.commit('addUser', user)
+            this.$store.commit('addCurrentUser', user)
             this.$router.push({
               path: '/user/' + this.registerForm.name,
             })

@@ -2,13 +2,13 @@
 <template>
   <div class="user-info" v-loading="loading">
     <div class="title">
-      <span class="mini-title">我的个人档案 你好 {{$route.params.name}}！</span>
+      <span class="mini-title">我的个人档案 你好 {{ $route.params.name }}！</span>
       <el-button type="text" @click="logout">退出登录</el-button>
       <!-- <el-button type="primary" @click="jumpto">跳转到百度</el-button> -->
     </div>
     <div>
       <ul>
-        <li v-for="item in list" :key="item.aid">{{item.title}}</li>
+        <li v-for="item in list" :key="item.aid">{{ item.title }}</li>
       </ul>
     </div>
     <router-view :test="test"></router-view>
@@ -45,13 +45,13 @@
     },
     methods: {
       logout() {
-        this.$localStorage.remove('currentUser')
+        // this.$localStorage.remove('currentUser')
+        this.$store.state.currentUser = null
         this.$router.push('/login')
       },
       jumpto() {
         let that = this
-        const api =
-          'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1'
+        const api = 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1'
         this.$axios
           .get(api)
           .then((res) => {
