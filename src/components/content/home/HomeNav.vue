@@ -242,7 +242,7 @@
         this.$router.push('/tehui')
       },
       toUser(arg) {
-        console.log('当前用户是：', this.currentUser)
+        // console.log('当前用户是：', this.currentUser)
         let redirect = ''
         if (this.currentUser === null || this.currentUser === undefined) {
           redirect = '/login'
@@ -250,7 +250,7 @@
           const user = this.currentUser
           if (arg === 'user') {
             // redirect = '/user/${user}'
-            console.log(this.$route.params.name)
+            // console.log(this.$route.params.name)
             this.$router.push({ name: 'userInfo', params: { name: user.name } })
           } else if (arg === 'wish') {
             redirect = '/user/' + user.name + '/wishlist'

@@ -4,20 +4,19 @@
 </template>
 
 <script>
-import VueEvent from '@/components/content/util/VueEvent.js'
+  import VueEvent from '@/components/content/util/VueEvent.js'
 
-export default {
-  name: "UserShopbag",
-  mounted() {
-    VueEvent.$on('broad-news', data => {
-      console.log(data)
-    })
-  },
-  destroyed() {
-    console.log('destroy')
+  export default {
+    name: 'UserShopbag',
+    mounted() {
+      VueEvent.$on('broad-news', (data) => {
+        console.log(data)
+      })
+    },
+    destroyed() {
+      console.log('destroy')
+    },
   }
-}
-
 </script>
 <style scoped>
 </style>
