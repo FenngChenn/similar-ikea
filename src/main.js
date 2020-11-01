@@ -46,6 +46,8 @@ router.beforeEach((to, from, next) => {
 
   // 使用Vuex
   let currentUser = store.state.currentUser
+  console.log(currentUser !== null)
+  console.log(to)
 
   if (to.meta.requireAuth) {
     if (currentUser !== null) {

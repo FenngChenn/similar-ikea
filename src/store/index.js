@@ -17,6 +17,7 @@ export default new Vuex.Store({
     },
     addCurrentUser(state, user) {
       state.currentUser = user
+      console.log(state)
     }
   },
   actions: {

@@ -189,7 +189,6 @@
         ],
         activeIndex: '1',
         // currentUser: JSON.parse(this.$localStorage.get('currentUser')),
-        currentUser: this.$store.state.currentUser,
         drawer: false,
         direction: 'ltr',
         activeName: '1',
@@ -230,6 +229,9 @@
       span() {
         return 24 / this.navContent.length
       },
+      currentUser() {
+        return this.$store.state.currentUser
+      }
     },
     methods: {
       toHome() {

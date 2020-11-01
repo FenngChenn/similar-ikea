@@ -151,3 +151,6 @@ Autocomplete -> Fix change event bug (#19200 by @sxzz)
 * .sync修饰符   
   在某些情况下，有一些属性在父子组件之间需要双向绑定，因为子组件可以变更父组件，所以到底是谁来变更的就不能溯源了，比如有一个自定义的父组件，它需要将title属性传到子组件中，子组件根据用户活动，也需要将title传递到父组件中进行值的改变，那么此时就可以将父组件中绑定 v-bind:title.sync="doc.title"， **但是引号中的内容不能是表达式**，否则无效
 
+* 在组件中data被赋值为vuex中某个 state 值，比如：currentUser：this.$store.state.currentUser，此时当 vuex 中currentUser 改变时，页面的 currentUser 值并不会跟着改变，因为在组件加载完毕前，会将 data 中所有数据初始化完毕，之后便只会被动改变数据。然而等组件数据初始化完毕之后，即使 state 中的数据发生了改变， data 中的数据与其并非存在绑定关系，data 仅仅在数据初始化阶段去调用了 state 中的数据，所以 data 中的数据并不会根据 state 中的数据发生改变而改变。  
+解决：1. 使用computed属性去获取state中的数据；2. 使用watch监听state中的数据：得到vuex中的数据需要访问getters
+https://blog.csdn.net/u012925833/article/details/90264152
