@@ -25,6 +25,13 @@
         isShow: false,
       }
     },
+    created() {
+      const that = this
+      async function loading() {
+        await that.$store.dispatch('getUserinfo')
+      }
+      loading()
+    },
     mounted() {
       // localStorage.clear()
       // let user = [{name: 'admin', pass: '123'}];
