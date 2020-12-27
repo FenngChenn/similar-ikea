@@ -231,7 +231,7 @@
       },
       currentUser() {
         return this.$store.state.currentUser
-      }
+      },
     },
     methods: {
       toHome() {
@@ -319,8 +319,8 @@
         transform: translate(-50%, -50%)
 
     .logo
-      cursor: pointer
-      padding-top: (1 / $r) * 10
+      position: relative
+      background-image: url('../../../assets/img/ikea-logo.svg')
 
   .detail-nav
     display: flex
@@ -334,9 +334,9 @@
 
   .icon-area
     display: flex
+    justify-content: space-space-between
     height: 100%
 
-  .icon-area
     div
       flex: 1
       cursor: pointer

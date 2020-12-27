@@ -28,7 +28,7 @@
     created() {
       const that = this
       async function loading() {
-        await that.$store.dispatch('getUserinfo')
+        // await that.$store.dispatch('getUserinfo')
       }
       loading()
     },

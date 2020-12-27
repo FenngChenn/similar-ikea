@@ -20,8 +20,8 @@
 </script>
 <style lang="stylus" scoped>
   .navbar
-    height: (1 / $r) * 81
-    line-height: (1 / $r) * 81
+    height: (1 / $r) * 110
+    line-height: (1 / $r) * 110
     width: 100%
     display: flex
     background-color: #fff

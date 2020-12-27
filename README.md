@@ -159,3 +159,7 @@ https://blog.csdn.net/u012925833/article/details/90264152
   产生原因：因为store里的数据是保存在运行内存中的,当页面刷新时，页面会重新加载vue实例，store里面的数据就会被重新赋值。  
   解决办法：1. 普通办法是用sessionStorage  
            2. 利用async/await来解决 https://blog.csdn.net/success400/article/details/109642431 
+
+* vue修饰符
+  .stop 阻止子组件被父组件的事件冒泡
+  .native 使得被绑定的组件变为普通的html标签

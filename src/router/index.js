@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
@@ -100,6 +101,10 @@ const routes = [
   // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
 ]
+
+Vue.prototype.initUserInfo = () => {
+  store.state.test.set('name', 'fc')
+}
 
 const router = new VueRouter({
   mode: 'history',

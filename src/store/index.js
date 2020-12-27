@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 let state = {
   users: [],
-  currentUser: null
+  currentUser: null,
+  test: {}
 }
 
 export default new Vuex.Store({
